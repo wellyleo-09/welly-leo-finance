@@ -1070,12 +1070,12 @@
                                 <div>
                                     <label class="block text-xs font-bold text-slate-300 mb-1">Plafon Kredit / Limit KRK (Rp)</label>
                                     <input type="text" id="krk-plafon" oninput="formatInputFormatted(this); calcKRK();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
-                                    <p id="krk-hint-plafon" class="text-[10px] text-emerald-400 mt-1">Terbilang: 500 Juta</p>
+                                    <p id="krk-hint-plafon" class="text-[10px] text-emerald-400 mt-1">Terbilang: Rp 0</p>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-300 mb-1">Baki Debet / Outstanding O/S (Rp)</label>
                                     <input type="text" id="krk-os" oninput="formatInputFormatted(this); calcKRK();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
-                                    <p id="krk-hint-os" class="text-[10px] text-emerald-400 mt-1">Terbilang: 250 Juta</p>
+                                    <p id="krk-hint-os" class="text-[10px] text-emerald-400 mt-1">Terbilang: Rp 0</p>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-300 mb-1">Suku Bunga (% p.a.)</label>
@@ -1146,7 +1146,7 @@
                                         <span class="text-xs font-bold text-white flex items-center gap-2">
                                             <i class="fa-solid fa-list-check text-emerald-400"></i> Rincian Akrual Bunga Harian
                                         </span>
-                                        <span id="res-krk-badge" class="text-[10px] bg-gold-500/15 text-gold-400 font-semibold px-2 py-0.5 rounded">Oktober 2026</span>
+                                        <span id="res-krk-badge" class="text-[10px] bg-gold-500/15 text-gold-400 font-semibold px-2 py-0.5 rounded">-</span>
                                     </div>
                                     <div class="max-h-56 overflow-y-auto">
                                         <table class="w-full text-left text-[11px]">
@@ -1187,32 +1187,33 @@
                             <div class="lg:col-span-5 space-y-4">
                                 <div>
                                     <label class="block text-xs font-bold text-slate-300 mb-1">Jumlah Pinjaman / Plafond (Rp)</label>
-                                    <input type="text" id="cicilan-principal" value="500.000.000" oninput="formatInputFormatted(this); calcCicilan();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                    <input type="text" id="cicilan-principal" oninput="formatInputFormatted(this); calcCicilan();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
                                 </div>
                                 <div class="grid grid-cols-2 gap-3">
                                     <div>
                                         <label class="block text-xs font-bold text-slate-300 mb-1">Suku Bunga (% p.a.)</label>
-                                        <input type="number" id="cicilan-rate" step="0.1" value="8.5" oninput="calcCicilan()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                        <input type="number" id="cicilan-rate" step="0.1" oninput="calcCicilan()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold text-slate-300 mb-1">Tenor (Tahun, maks 30)</label>
-                                        <input type="number" id="cicilan-tenure" min="1" max="30" value="5" oninput="calcCicilan()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                        <input type="number" id="cicilan-tenure" min="1" max="30" oninput="calcCicilan()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-300 mb-1">Skema Bunga</label>
                                     <select id="cicilan-type" onchange="calcCicilan()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
-                                        <option value="anuitas" selected>Anuitas (Efektif - Standar Bank)</option>
+                                        <option value="" selected disabled>Pilih skema bunga</option>
+                                        <option value="anuitas">Anuitas (Efektif - Standar Bank)</option>
                                         <option value="flat">Flat (Bunga Tetap)</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-300 mb-1">Pendapatan Bulanan (Rp) <span class="text-emerald-400 font-normal">(wajib untuk DBR)</span></label>
-                                    <input type="text" id="cicilan-income" value="25.000.000" oninput="formatInputFormatted(this); calcCicilan();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                    <input type="text" id="cicilan-income" oninput="formatInputFormatted(this); calcCicilan();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-300 mb-1">Angsuran Lain per Bulan (Rp) <span class="text-slate-500 font-normal">(opsional)</span></label>
-                                    <input type="text" id="cicilan-existing" value="0" oninput="formatInputFormatted(this); calcCicilan();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                    <input type="text" id="cicilan-existing" oninput="formatInputFormatted(this); calcCicilan();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
                                 </div>
                                 <button onclick="calcCicilan()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-obsidian-950 font-extrabold text-xs uppercase shadow-lg hover:scale-[1.01] transition-all">Hitung Angsuran & DBR</button>
                             </div>
@@ -1287,41 +1288,44 @@
                                     <div>
                                         <label class="block text-xs font-bold text-slate-300 mb-1">Mata Uang</label>
                                         <select id="depo-cur" onchange="toggleDepoCur()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
-                                            <option value="IDR" selected>IDR (Rupiah)</option>
+                                        <option value="" selected disabled>Pilih mata uang</option>
+                                            <option value="IDR">IDR (Rupiah)</option>
                                             <option value="USD">USD (Dollar AS)</option>
                                         </select>
                                     </div>
                                     <div id="depo-kurs-wrap" class="hidden">
                                         <label class="block text-xs font-bold text-slate-300 mb-1">Kurs USD ke IDR (asumsi)</label>
-                                        <input type="text" id="depo-kurs" value="16.000" oninput="formatInputFormatted(this); calcDeposito();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                        <input type="text" id="depo-kurs" oninput="formatInputFormatted(this); calcDeposito();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-300 mb-1">Penempatan Pokok per Periode</label>
-                                    <input type="text" id="depo-amount" value="100.000.000" oninput="formatInputFormatted(this); calcDeposito();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                    <input type="text" id="depo-amount" oninput="formatInputFormatted(this); calcDeposito();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
                                 </div>
                                 <div class="grid grid-cols-2 gap-3">
                                     <div>
                                         <label class="block text-xs font-bold text-slate-300 mb-1">Frekuensi Setoran</label>
                                         <select id="depo-freq" onchange="toggleDepoFreq()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                        <option value="" selected disabled>Pilih frekuensi</option>
                                             <option value="bulanan">Bulanan</option>
-                                            <option value="tahunan" selected>Tahunan</option>
+                                            <option value="tahunan">Tahunan</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label id="depo-deposit-label" class="block text-xs font-bold text-slate-300 mb-1">Lama Setoran (1–20 Tahun)</label>
-                                        <input type="number" id="depo-deposit-n" min="1" max="20" value="5" onchange="toggleDepoFreq()" oninput="calcDeposito()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                        <input type="number" id="depo-deposit-n" min="1" max="20" onchange="toggleDepoFreq()" oninput="calcDeposito()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2 gap-3">
                                     <div>
                                         <label id="depo-tenor-label" class="block text-xs font-bold text-slate-300 mb-1">Total Tenor Compounding (Tahun)</label>
                                         <select id="depo-tenor-sel" onchange="calcDeposito()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                        <option value="" selected disabled>Pilih tenor</option>
                                             <option value="5">5</option>
                                             <option value="10">10</option>
                                             <option value="15">15</option>
                                             <option value="20">20</option>
-                                            <option value="25" selected>25</option>
+                                            <option value="25">25</option>
                                             <option value="30">30</option>
                                             <option value="40">40</option>
                                             <option value="50">50</option>
@@ -1331,17 +1335,17 @@
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold text-slate-300 mb-1">Suku Bunga p.a. (%)</label>
-                                        <input type="number" id="depo-rate" step="0.1" value="6.0" oninput="calcDeposito()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                        <input type="number" id="depo-rate" step="0.1" oninput="calcDeposito()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2 gap-3">
                                     <div>
                                         <label class="block text-xs font-bold text-slate-300 mb-1">Usia Awal <span class="text-slate-500 font-normal">(opsional)</span></label>
-                                        <input type="number" id="depo-age" min="0" max="100" value="40" oninput="calcDeposito()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                        <input type="number" id="depo-age" min="0" max="100" oninput="calcDeposito()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold text-slate-300 mb-1">Asumsi Inflasi p.a. (%)</label>
-                                        <input type="number" id="depo-infl" step="0.1" value="3.0" oninput="calcDeposito()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                        <input type="number" id="depo-infl" step="0.1" oninput="calcDeposito()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
                                     </div>
                                 </div>
                                 <p class="text-[11px] text-slate-500">Bunga dikapitalisasi tiap periode. PPh final bunga 20%. Setoran bulanan: 1–12 bulan. Setoran tahunan: 1–20 tahun.</p>
@@ -1417,7 +1421,7 @@
 
 <div id="calc-pesangon" class="calc-content hidden space-y-8">
                         <div class="border-b border-slate-800 pb-4">
-                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Kalkulator 3</span>
+                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Kalkulator 6</span>
                             <h2 class="text-2xl font-black text-white mt-1 flex items-center gap-3">
                                 <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i> Kalkulator Pesangon PHK (PP 35/2021 & PPh 21)
                             </h2>
@@ -1670,7 +1674,7 @@
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div class="p-3.5 rounded-xl bg-obsidian-900 border border-slate-800">
                                             <span class="text-[11px] text-slate-400 block">Sisa Horizon Waktu:</span>
-                                            <span id="res-edu-years" class="text-lg font-bold text-white">15 Tahun</span>
+                                            <span id="res-edu-years" class="text-lg font-bold text-white">0 Tahun</span>
                                         </div>
                                         <div class="p-3.5 rounded-xl bg-obsidian-900 border border-slate-800">
                                             <span class="text-[11px] text-slate-400 block">Estimasi Biaya Masa Depan:</span>
@@ -2164,7 +2168,7 @@
             const inp = document.getElementById('depo-deposit-n');
             const max = monthly ? 12 : 20;
             inp.max = max;
-            inp.value = Math.min(max, Math.max(1, parseInt(inp.value) || 1));
+            if (inp.value !== '') inp.value = Math.min(max, Math.max(1, parseInt(inp.value) || 1));
             document.getElementById('depo-deposit-label').textContent = monthly ? 'Lama Setoran (1–12 Bulan)' : 'Lama Setoran (1–20 Tahun)';
             document.getElementById('depo-tenor-label').textContent = monthly ? 'Total Tenor Compounding (Bulan)' : 'Total Tenor Compounding (Tahun)';
             document.getElementById('depo-th-period').textContent = monthly ? 'BULAN' : 'TAHUN';
@@ -2180,7 +2184,7 @@
             const freq = document.getElementById('depo-freq').value;
             const perYear = freq === 'bulanan' ? 12 : 1;
             const lamaMax = perYear === 12 ? 12 : 20;
-            const tenor = parseInt(document.getElementById('depo-tenor-sel').value) || 25;
+            const tenor = parseInt(document.getElementById('depo-tenor-sel').value) || 0;
             let lama = Math.min(lamaMax, Math.max(1, parseInt(document.getElementById('depo-deposit-n').value) || 1));
             lama = Math.min(lama, tenor);
             const startAge = parseInt(document.getElementById('depo-age').value) || 0;
@@ -2342,7 +2346,8 @@
             // Table
             let tableHTML = "";
             let akumulasi = 0;
-            for (let i = 1; i <= daysInMonth; i++) {
+            const krkRows = os > 0 ? daysInMonth : 0;
+            for (let i = 1; i <= krkRows; i++) {
                 akumulasi += bungaHarian;
                 tableHTML += `
                     <tr class="hover:bg-obsidian-950/50">
