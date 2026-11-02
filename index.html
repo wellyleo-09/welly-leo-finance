@@ -467,6 +467,20 @@
             .photo-glide { animation: none; opacity: 1; }
         }
     </style>
+    <!-- Google Analytics 4: ganti G-9TH46053NB dengan Measurement ID Anda -->
+    <script>
+        const GA_ID = 'G-9TH46053NB';
+        if (GA_ID.indexOf('XXXX') === -1) {
+            const gs = document.createElement('script');
+            gs.async = true;
+            gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+            document.head.appendChild(gs);
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function(){ dataLayer.push(arguments); };
+            gtag('js', new Date());
+            gtag('config', GA_ID);
+        }
+    </script>
 </head>
 <body class="antialiased selection:bg-gold-500 selection:text-black bg-[#05070A]">
 
@@ -2409,6 +2423,22 @@
         window.onload = function() {
             runPreloader();
         };
+    </script>
+
+    <script>
+        // Pelacakan event: klik WhatsApp dan klik tab kalkulator
+        document.addEventListener('click', function (e) {
+            if (typeof gtag !== 'function') return;
+            const wa = e.target.closest('a[href*="wa.me"]');
+            if (wa) {
+                gtag('event', 'whatsapp_click', { location: wa.textContent.trim().slice(0, 60) });
+                return;
+            }
+            const tab = e.target.closest('[id^="tab-"]');
+            if (tab && tab.closest('#page-kalkulator')) {
+                gtag('event', 'calculator_tab', { calculator: tab.id.replace('tab-', '') });
+            }
+        });
     </script>
 </body>
 </html>
