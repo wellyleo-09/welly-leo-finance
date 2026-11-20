@@ -50,9 +50,6 @@
     <!-- AOS Library (Animate On Scroll) -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <!-- MathJax Renderer untuk Formula Matematika -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <style>
         :root {
@@ -111,7 +108,7 @@
             box-shadow: 
                 0 8px 32px -8px rgba(0, 0, 0, 0.7),
                 inset 0 1px 0 rgba(255, 255, 255, 0.03);
-            transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, border-color 0.45s ease;
             border-radius: 1.25rem;
             position: relative;
             overflow: hidden;
@@ -478,6 +475,44 @@
             aspect-ratio: 16 / 9;
             background-color: #05070A;
             overflow: hidden;
+        }
+        /* Video mengisi frame 16:9 secara pasti (absolute) agar tidak mengecil di HP */
+        .video-frame-16x9 > video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Bagian bawah halaman dirender saat dibutuhkan, agar pembukaan lebih ringan */
+        #page-landing > section:not(#beranda) {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 900px;
+        }
+
+        img, video, canvas, iframe { max-width: 100%; }
+
+        /* Optimasi khusus HP: efek berat dimatikan agar scroll & pembukaan halus */
+        @media (max-width: 767px) {
+            body::before { display: none; }
+            #heroTubesCanvas { display: none; }
+            .morph-card {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                background: rgba(12, 16, 24, 0.96);
+            }
+            #navbar {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                background: rgba(5, 7, 10, 0.97);
+            }
+            .photo-blob-a { filter: none; }
+            .photo-blob-b { filter: blur(8px); }
+            .ambient-glow-gold,
+            .ambient-glow-emerald { animation: none; }
+            .particle:nth-child(n+5) { display: none; }
         }
     </style>
 </head>
@@ -1873,7 +1908,7 @@
         });
 
         // ========== INTERACTIVE 3D TUBES BACKGROUND ==========
-        (async function initHeroTubes() {
+        async function initHeroTubes() {
             const canvas = document.getElementById('heroTubesCanvas');
             const host = document.querySelector('.hero-tubes-layer');
             if (!canvas || !host) return;
@@ -1905,7 +1940,18 @@
             } catch (error) {
                 console.warn('Interactive 3D tubes could not be loaded; using the premium ambient background instead.', error);
             }
-        })();
+        }
+
+        function startHeroTubesWhenIdle() {
+            const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (window.innerWidth < 768 || reduceMotion) return;
+            const run = () => initHeroTubes();
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(run, { timeout: 1500 });
+            } else {
+                setTimeout(run, 600);
+            }
+        }
 
         // Counter Animation untuk Angka Statistik Hero Section
         function startCounterAnimation() {
@@ -2501,7 +2547,7 @@
                     bar.style.width = progress + '%';
                     percent.textContent = Math.floor(progress) + '%';
                 }
-            }, 120);
+            }, 90);
         }
 
         // ========== MODAL PEMUTAR VIDEO RESPONSIF PC & HP ==========
@@ -2641,6 +2687,7 @@
         window.onload = function() {
             runPreloader();
             initVideoBgmSync();
+            startHeroTubesWhenIdle();
         };
     </script>
 </body>
