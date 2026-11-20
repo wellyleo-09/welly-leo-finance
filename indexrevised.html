@@ -1,0 +1,2461 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welly Leo | Financial Consultant & Asset Risk Specialist</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: {
+                            900: '#0A0E14',
+                            950: '#05070A',
+                            DEFAULT: '#07090E'
+                        },
+                        gold: {
+                            300: '#F5E6A3',
+                            400: '#F1C40F',
+                            500: '#D4AF37',
+                            600: '#B8860B',
+                            700: '#8C6208'
+                        },
+                        emerald: {
+                            400: '#34D399',
+                            500: '#10B981',
+                            600: '#059669',
+                            800: '#065F46',
+                            900: '#064E3B',
+                            950: '#022C22'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Library (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- MathJax Renderer untuk Formula Matematika -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --bg-deep: #05070A;
+            --bg-card: rgba(12, 16, 24, 0.82);
+            --gold: #D4AF37;
+            --gold-light: #F5E6A3;
+            --emerald: #10B981;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        /* Di HP/tablet: animasi masuk dari samping diganti naik dari bawah */
+        @media (max-width: 1023px) {
+            [data-aos="fade-right"],
+            [data-aos="fade-left"] {
+                transform: translate3d(0, 40px, 0);
+            }
+            [data-aos="fade-right"].aos-animate,
+            [data-aos="fade-left"].aos-animate {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: #E2E8F0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Noise texture overlay for premium black feel */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.035;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF8D6 0%, #F1C40F 40%, #D4AF37 70%, #A67C00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .morph-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            box-shadow: 
+                0 8px 32px -8px rgba(0, 0, 0, 0.7),
+                inset 0 1px 0 rgba(255, 255, 255, 0.03);
+            transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+            border-radius: 1.25rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .morph-card::before {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.03) 0%, transparent 50%, rgba(16, 185, 129, 0.02) 100%);
+            opacity: 0;
+            transition: opacity 0.45s ease;
+            pointer-events: none;
+        }
+
+        .morph-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(212, 175, 55, 0.35);
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(212, 175, 55, 0.12),
+                0 0 80px rgba(16, 185, 129, 0.08);
+        }
+
+        .morph-card:hover::before {
+            opacity: 1;
+        }
+
+        .calc-tab-btn.active {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.22) 0%, rgba(16, 185, 129, 0.18) 100%);
+            border-color: rgba(212, 175, 55, 0.65);
+            color: #F5E6A3;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        /* Ambient Pulsing Orbs */
+        @keyframes floatGlow {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.45; }
+            50% { transform: translateY(-28px) scale(1.12); opacity: 0.75; }
+        }
+        @keyframes floatGlowReverse {
+            0%, 100% { transform: translateY(0) scale(1.05); opacity: 0.4; }
+            50% { transform: translateY(22px) scale(0.95); opacity: 0.7; }
+        }
+        .ambient-glow-gold {
+            animation: floatGlow 9s ease-in-out infinite;
+        }
+        .ambient-glow-emerald {
+            animation: floatGlowReverse 11s ease-in-out infinite 1.5s;
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(212, 175, 55, 0.55);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleFloat 18s linear infinite;
+        }
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+            10% { opacity: 0.7; transform: translateY(90vh) scale(1); }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) translateX(40px) scale(0.5); opacity: 0; }
+        }
+
+        /* Navbar glass upgrade */
+        #navbar {
+            background: rgba(5, 7, 10, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+        }
+
+        /* Smooth Custom Scrollbar */
+        ::-webkit-scrollbar { width: 7px; }
+        ::-webkit-scrollbar-track { background: #05070A; }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(180deg, #D4AF37, #10B981); 
+            border-radius: 4px; 
+        }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+        /* Button shine effect */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn-shine:hover::after {
+            left: 120%;
+        }
+
+        /* Input focus glow */
+        input:focus, select:focus, textarea:focus {
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+        }
+
+        /* ========== INTERACTIVE 3D TUBES: HERO OPENING ========== */
+        .hero-tubes-section {
+            isolation: isolate;
+            background:
+                radial-gradient(ellipse at 50% 25%, rgba(15, 28, 40, .72), transparent 62%),
+                linear-gradient(180deg, #070b12 0%, #05070a 100%);
+        }
+        .hero-tubes-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: auto;
+        }
+        #heroTubesCanvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 680px;
+            touch-action: pan-y;
+            opacity: .88;
+        }
+        .hero-tubes-vignette {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background:
+                linear-gradient(90deg, rgba(5,7,10,.82) 0%, rgba(5,7,10,.48) 48%, rgba(5,7,10,.34) 100%),
+                linear-gradient(180deg, rgba(5,7,10,.18) 0%, transparent 32%, rgba(5,7,10,.62) 100%);
+        }
+        #beranda > .max-w-7xl {
+            z-index: 5;
+            pointer-events: none;
+        }
+        #beranda > .max-w-7xl a,
+        #beranda > .max-w-7xl button,
+        #beranda > .max-w-7xl input,
+        #beranda > .max-w-7xl [role="button"] {
+            pointer-events: auto;
+        }
+        @media (max-width: 767px) {
+            #heroTubesCanvas { min-height: 760px; opacity: .72; }
+            .hero-tubes-vignette {
+                background:
+                    linear-gradient(180deg, rgba(5,7,10,.38), rgba(5,7,10,.55) 55%, rgba(5,7,10,.78)),
+                    linear-gradient(90deg, rgba(5,7,10,.32), rgba(5,7,10,.32));
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #heroTubesCanvas { opacity: .45; }
+        }
+
+        /* ========== PRELOADER / LOADING SCREEN ========== */
+        #preloader {
+            position: fixed;
+            top: 0; right: 0; bottom: 0; left: 0;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            box-sizing: border-box;
+            padding: 0 1rem;
+            text-align: center;
+            z-index: 99999;
+            background: #05070A;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: opacity 0.7s ease, visibility 0.7s ease;
+        }
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .preloader-logo {
+            width: 88px;
+            height: 88px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, #D4AF37, #F1C40F, #10B981);
+            padding: 2px;
+            animation: logoPulse 2s ease-in-out infinite;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.35), 0 0 80px rgba(16, 185, 129, 0.15);
+        }
+        .preloader-logo-inner {
+            width: 100%;
+            height: 100%;
+            background: #05070A;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #D4AF37;
+            letter-spacing: -1px;
+        }
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+            50% { transform: scale(1.06); box-shadow: 0 0 55px rgba(212, 175, 55, 0.5), 0 0 90px rgba(16, 185, 129, 0.2); }
+        }
+        .preloader-brand {
+            margin-top: 1.75rem;
+            text-align: center;
+        }
+        .preloader-brand h1 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            padding-left: 0.18em;
+            color: #fff;
+            margin: 0;
+        }
+        .preloader-brand p {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            padding-left: 0.25em;
+            color: #D4AF37;
+            text-transform: uppercase;
+            margin-top: 0.35rem;
+        }
+        .preloader-bar-wrap {
+            width: 180px;
+            height: 3px;
+            background: rgba(212, 175, 55, 0.15);
+            border-radius: 4px;
+            margin-top: 2rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .preloader-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #D4AF37, #F1C40F, #10B981);
+            border-radius: 4px;
+            transition: width 0.35s ease;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
+        }
+        .preloader-percent {
+            margin-top: 0.85rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: rgba(212, 175, 55, 0.7);
+            letter-spacing: 0.1em;
+            padding-left: 0.1em;
+        }
+        .preloader-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -140px 0 0 -140px;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+            filter: blur(40px);
+            pointer-events: none;
+            animation: preloaderGlow 3s ease-in-out infinite;
+        }
+        @keyframes preloaderGlow {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.15); }
+        }
+
+        /* ========== EFEK BULATAN BERPUTAR (MORPH) + GLIDE PADA FOTO HERO ========== */
+        @keyframes photoMorph {
+            0%   { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translate(0, 0) rotate(0deg) scale(1); }
+            34%  { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; transform: translate(var(--mx), calc(var(--my) * -1)) rotate(120deg) scale(1.05); }
+            67%  { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; transform: translate(calc(var(--mx) * -0.75), var(--my)) rotate(240deg) scale(0.95); }
+            100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translate(0, 0) rotate(360deg) scale(1); }
+        }
+        @keyframes photoGlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .photo-glide {
+            position: relative;
+            width: 100%;
+            max-width: 28rem;
+            --mx: 8px;
+            --my: 10px;
+            animation: photoGlideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both paused;
+        }
+        #preloader.hidden ~ #page-landing .photo-glide {
+            animation-play-state: running;
+        }
+        .photo-blob {
+            position: absolute;
+            pointer-events: none;
+            will-change: transform, border-radius;
+        }
+        .photo-blob-a {
+            top: 50%; left: 50%;
+            width: 108%; aspect-ratio: 1 / 1;
+            margin: -54% 0 0 -54%;
+            /* Lumina 16 juta warna: full RGB spectrum gradient */
+            background: linear-gradient(
+                45deg,
+                #FF006E 0%,
+                #FB5607 12%,
+                #FFBE0B 24%,
+                #F1C40F 36%,
+                #8338EC 48%,
+                #3A86FF 60%,
+                #10B981 72%,
+                #06D6A0 84%,
+                #D4AF37 100%
+            );
+            opacity: 0.72;
+            filter: blur(1px) saturate(1.35);
+            animation: photoMorph 12s ease-in-out infinite;
+        }
+        .photo-blob-b {
+            top: 50%; left: 50%;
+            width: 128%; aspect-ratio: 1 / 1;
+            margin: -64% 0 0 -64%;
+            /* Lumina 16 juta warna: reverse full spectrum glow */
+            background: linear-gradient(
+                225deg,
+                #06D6A0 0%,
+                #10B981 10%,
+                #3A86FF 22%,
+                #8338EC 34%,
+                #FF006E 48%,
+                #FB5607 60%,
+                #FFBE0B 74%,
+                #F1C40F 88%,
+                #D4AF37 100%
+            );
+            opacity: 0.42;
+            filter: blur(18px) saturate(1.4);
+            animation: photoMorph 17s ease-in-out infinite reverse;
+        }
+        @media (min-width: 1024px) {
+            .photo-glide { --mx: 20px; --my: 25px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .photo-blob { animation: none; }
+            .photo-glide { animation: none; opacity: 1; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold-500 selection:text-black bg-[#05070A]">
+
+    <!-- ========== LOADING SCREEN ========== -->
+    <div id="preloader">
+        <div class="preloader-glow"></div>
+        <div class="preloader-logo">
+            <div class="preloader-logo-inner">WL</div>
+        </div>
+        <div class="preloader-brand">
+            <h1>WELLY LEO</h1>
+            <p>Financial & Risk Specialist</p>
+        </div>
+        <div class="preloader-bar-wrap">
+            <div class="preloader-bar" id="preloader-bar"></div>
+        </div>
+        <div class="preloader-percent" id="preloader-percent">0%</div>
+    </div>
+
+    <!-- NAVIGATION BAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-obsidian-950/90 backdrop-blur-xl border-b border-slate-800/80 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Brand Logo -->
+                <button onclick="navigateTo('landing')" class="flex items-center gap-3 group text-left">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-gold-600 via-gold-400 to-emerald-500 p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                        <div class="w-full h-full bg-obsidian-950 rounded-[10px] flex items-center justify-center text-gold-400 font-black text-xl">
+                            WL
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-lg font-extrabold tracking-wider text-white group-hover:text-gold-400 transition-colors">WELLY LEO</span>
+                        <span class="text-[10px] font-bold text-emerald-400 tracking-widest uppercase">Asset Risk & Financial Specialist</span>
+                    </div>
+                </button>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex items-center space-x-7">
+                    <button onclick="navigateTo('landing', 'beranda')" class="nav-link text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-gold-400 transition-colors">Beranda</button>
+                    <button onclick="navigateTo('landing', 'tentang')" class="nav-link text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-gold-400 transition-colors">Tentang Saya</button>
+                    <button onclick="navigateTo('landing', 'video')" class="nav-link text-xs font-bold uppercase tracking-wider text-gold-400 hover:text-emerald-400 transition-colors">Video Edukasi</button>
+                    <button onclick="navigateTo('kalkulator')" class="text-xs font-bold uppercase tracking-wider px-3.5 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 transition-all flex items-center gap-1.5 hover:scale-105">
+                        <i class="fa-solid fa-calculator text-xs"></i>
+                        <span>Kalkulator Hub</span>
+                    </button>
+                    <button onclick="navigateTo('landing', 'kontak')" class="nav-link text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-gold-400 transition-colors">Kontak</button>
+                </nav>
+
+                <!-- Desktop CTA Button -->
+                <div class="hidden lg:flex items-center">
+                    <a href="https://wa.me/6282227772038?text=Halo%20Welly%20Leo,%20saya%20ingin%20berkonsultasi%20mengenai%20perencanaan%20keuangan." target="_blank" class="btn-shine px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 text-white font-bold text-xs shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 border border-emerald-400/30 hover:shadow-[0_0_25px_rgba(16,185,129,0.3)]">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>Konsultasi Direct</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex lg:hidden">
+                    <button id="mobile-menu-btn" type="button" class="text-slate-300 hover:text-gold-400 p-2 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div class="hidden lg:hidden bg-obsidian-950/98 border-b border-slate-800/80 px-6 pt-3 pb-6 space-y-3" id="mobile-menu">
+            <button onclick="navigateTo('landing', 'beranda')" class="block w-full text-left py-2 text-sm font-bold text-slate-200 hover:text-gold-400">Beranda</button>
+            <button onclick="navigateTo('landing', 'tentang')" class="block w-full text-left py-2 text-sm font-bold text-slate-200 hover:text-gold-400">Tentang Saya</button>
+            <button onclick="navigateTo('landing', 'video')" class="block w-full text-left py-2 text-sm font-bold text-gold-400 hover:text-emerald-400">Video Edukasi</button>
+            <button onclick="navigateTo('kalkulator')" class="block w-full text-left py-2 text-sm font-bold text-emerald-400 hover:text-gold-400 flex items-center gap-2">
+                <i class="fa-solid fa-calculator"></i> Kalkulator Hub
+            </button>
+            <button onclick="navigateTo('landing', 'kontak')" class="block w-full text-left py-2 text-sm font-bold text-slate-200 hover:text-gold-400">Kontak</button>
+        </div>
+    </header>
+
+    <!-- ================================================================= -->
+    <!-- HALAMAN 1: LANDING PAGE UTAMA -->
+    <!-- ================================================================= -->
+    <div id="page-landing" class="page-view">
+        
+        <!-- HERO SECTION -->
+        <section id="beranda" class="hero-tubes-section relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-[#05070A]">
+            
+            <!-- Interactive 3D neon tubes background -->
+            <div class="hero-tubes-layer" aria-hidden="true">
+                <canvas id="heroTubesCanvas"></canvas>
+            </div>
+            <div class="hero-tubes-vignette" aria-hidden="true"></div>
+
+            <!-- Ambient Dynamic Background Glows -->
+            <div class="ambient-glow-gold absolute top-1/4 -left-20 w-[28rem] h-[28rem] bg-gold-500/12 rounded-full filter blur-[140px] pointer-events-none"></div>
+            <div class="ambient-glow-emerald absolute bottom-0 right-0 w-[32rem] h-[32rem] bg-emerald-500/10 rounded-full filter blur-[150px] pointer-events-none"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-gold-500/5 rounded-full filter blur-[180px] pointer-events-none"></div>
+            
+            <!-- Floating Particles -->
+            <div class="particle" style="left:8%; animation-delay:0s;"></div>
+            <div class="particle" style="left:18%; animation-delay:3s; background:rgba(16,185,129,0.5);"></div>
+            <div class="particle" style="left:32%; animation-delay:6s;"></div>
+            <div class="particle" style="left:48%; animation-delay:1.5s; background:rgba(16,185,129,0.45);"></div>
+            <div class="particle" style="left:62%; animation-delay:4.5s;"></div>
+            <div class="particle" style="left:75%; animation-delay:8s; background:rgba(212,175,55,0.4);"></div>
+            <div class="particle" style="left:88%; animation-delay:2.2s;"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Hero Left Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
+                        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-bold uppercase tracking-wider shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                             Financial & Risk Management Specialist
+                        </div>
+
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight">
+                            Welly Leo <br>
+                            <span class="gold-gradient-text">Financial Consultant & Asset Risk Specialist</span>
+                        </h1>
+
+                        <p class="text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            Pendampingan profesional eksekutif & pemilik bisnis dalam <strong class="text-white font-bold">Mitigasi Risiko Kredit Rekening Koran</strong>, Perencanaan Pajak Terstruktur, & Proteksi Kekayaan Korporat maupun Individu dengan pengalaman sektor keuangan sejak tahun 2010.
+                        </p>
+
+                        <!-- CTA Group -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
+                            <a href="https://wa.me/6282227772038?text=Halo%20Welly%20Leo,%20saya%20tertarik%20untuk%20konsultasi%20perencanaan%20keuangan" target="_blank" class="btn-shine w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-gold-500 via-gold-400 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-obsidian-950 font-extrabold text-sm shadow-xl hover:scale-105 transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.35)]">
+                                <i class="fa-brands fa-whatsapp text-xl"></i>
+                                <span>Konsultasi Privat via WA</span>
+                            </a>
+                            <button onclick="navigateTo('kalkulator')" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-black/60 hover:bg-black/80 text-white border border-emerald-500/40 font-bold text-sm transition-all duration-300 hover:border-emerald-400 hover:scale-105 hover:shadow-[0_0_25px_rgba(16,185,129,0.2)]">
+                                <span>Buka Kalkulator Keuangan</span>
+                                <i class="fa-solid fa-arrow-right text-xs text-emerald-400"></i>
+                            </button>
+                        </div>
+
+                        <!-- Trust Stats -->
+                        <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-800/80 max-w-xl mx-auto lg:mx-0">
+                            <div class="text-center lg:text-left">
+                                <div class="text-2xl sm:text-3xl font-black text-gold-400 flex items-center justify-center lg:justify-start">
+                                    <span class="counter" data-target="15">0</span><span>+</span>
+                                </div>
+                                <div class="text-[11px] text-slate-400 font-semibold mt-1">Tahun Pengalaman Keuangan</div>
+                            </div>
+                            <div class="text-center lg:text-left">
+                                <div class="text-2xl sm:text-3xl font-black text-emerald-400 flex items-center justify-center lg:justify-start">
+                                    <span class="counter" data-target="100">0</span><span>%</span>
+                                </div>
+                                <div class="text-[11px] text-slate-400 font-semibold mt-1">Pendekatan Terstruktur & Legal</div>
+                            </div>
+                            <div class="text-center lg:text-left">
+                                <div class="text-2xl sm:text-3xl font-black text-gold-400">B2B & B2C</div>
+                                <div class="text-xs text-slate-400 font-semibold mt-1">Fokus Korporat & Eksekutif</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero Right Card (Photo Area) -->
+                    <div class="lg:col-span-5 flex justify-center" data-aos="fade-left" data-aos-duration="1000">
+                        <div class="photo-glide">
+                            <div class="photo-blob photo-blob-b" aria-hidden="true"></div>
+                            <div class="photo-blob photo-blob-a" aria-hidden="true"></div>
+                            <div class="w-full max-w-md morph-card p-6 sm:p-8 text-center relative">
+                                <div class="relative w-full aspect-[3/4] rounded-2xl bg-obsidian-950 border border-slate-800 overflow-hidden mb-6 flex flex-col items-center justify-center group">
+                                    <img id="profilePhotoDisplay" src="welly.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x800/0A0E14/D4AF37?text=WELLY+LEO';" alt="Welly Leo" class="w-full h-full object-cover rounded-xl shadow-inner group-hover:scale-105 transition-transform duration-500">
+                                </div>
+
+                                <h3 class="text-2xl font-black text-white">WELLY LEO</h3>
+                                <p class="text-xs font-extrabold text-gold-400 uppercase tracking-widest mt-1">Financial Consultant & Risk Specialist</p>
+
+                                <div class="mt-6 pt-6 border-t border-slate-800/80 space-y-3 text-left">
+                                    <div class="flex items-center gap-3 text-xs text-slate-300">
+                                        <i class="fa-solid fa-shield-halved text-emerald-400 text-sm"></i>
+                                        <span>Spesialis Proteksi Kredit Rekening Koran</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-xs text-slate-300">
+                                        <i class="fa-solid fa-building-columns text-gold-400 text-sm"></i>
+                                        <span>Ex-Branch Manager Perbankan</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-xs text-slate-300">
+                                        <i class="fa-solid fa-vault text-emerald-400 text-sm"></i>
+                                        <span>Wealth Preservation & Estate Planning</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFIL & KARIR TIMELINE -->
+        <section id="tentang" class="py-20 bg-obsidian-900 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-6 space-y-6" data-aos="fade-right" data-aos-duration="800">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                            Tentang Welly Leo
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                            Pengalaman Panjang & Keahlian Lintas Industri Keuangan
+                        </h2>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Welly Leo adalah Senior Financial Consultant & Risk Specialist dengan rekam jejak komprehensif di industri perbankan dan jasa keuangan. Memulai karir profesional sejak tahun 2010, Welly Leo memahami seluk-beluk manajemen risiko kredit perbankan, struktur pinjaman korporat, hingga kebutuhan pengamanan kekayaan pemilik bisnis.
+                        </p>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Fokus utamanya adalah memberikan konsultasi bernilai tinggi bagi segmen korporasi dan pemilik bisnis (<em>business owner</em>) dalam mengamankan kelangsungan usaha melalui strategi proteksi kredit, perencanaan perpajakan yang efisien, dan pembentukan <em>paper asset</em>.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-6" data-aos="fade-left" data-aos-duration="800">
+                        <div class="morph-card p-6 sm:p-8">
+                            <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                                <i class="fa-solid fa-briefcase text-gold-400"></i>
+                                <span>Rekam Jejak Karir & Pengalaman</span>
+                            </h3>
+
+                            <div class="relative border-l-2 border-emerald-500/40 ml-4 space-y-8">
+                                <div class="relative pl-6">
+                                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-obsidian-900"></div>
+                                    <span class="text-[11px] font-extrabold text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">2016 - Sekarang</span>
+                                    <h4 class="text-base font-bold text-white mt-2">Senior Financial Consultant & Risk Specialist</h4>
+                                    <p class="text-xs font-semibold text-gold-400">Konsultan Asset & Risk Management</p>
+                                    <p class="text-xs text-slate-400 mt-1 leading-normal">
+                                        Memberikan Advice konsultasi perlindungan aset, penyusunan solusi proteksi kredit perusahaan, serta perencanaan keuangan terstruktur bagi klien individu berkekayaan tinggi & korporasi.
+                                    </p>
+                                </div>
+
+                                <div class="relative pl-6">
+                                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold-500 ring-4 ring-obsidian-900"></div>
+                                    <span class="text-[11px] font-extrabold text-gold-400 bg-gold-950/80 border border-gold-500/30 px-2.5 py-0.5 rounded-full">2010 - 2017</span>
+                                    <h4 class="text-base font-bold text-white mt-2">Branch Manager</h4>
+                                    <p class="text-xs font-semibold text-slate-300">Bank Nusantara Parahyangan</p>
+                                    <p class="text-xs text-slate-400 mt-1 leading-normal">
+                                        Mengelola debitur cabang, analisa penyaluran kredit, penilaian risiko nasabah korporat/SME, dan pengembangan strategi bisnis perbankan.
+                                    </p>
+                                </div>
+
+                                <div class="relative pl-6">
+                                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-500 ring-4 ring-obsidian-900"></div>
+                                    <span class="text-[11px] font-extrabold text-slate-300 bg-slate-800 px-2.5 py-0.5 rounded-full">2000 - 2010</span>
+                                    <h4 class="text-base font-bold text-white mt-2">Marketing & Sales Management</h4>
+                                    <p class="text-xs font-semibold text-slate-300">Sektor Marketing & Jasa Keuangan</p>
+                                    <p class="text-xs text-slate-400 mt-1 leading-normal">
+                                        Membangun fondasi rekam jejak dalam pelayanan nasabah, manajemen hubungan bisnis, serta negosiasi strategi penjualan produk keuangan.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- BANNER PROMOSI KALKULATOR HUB -->
+        <section class="py-16 bg-gradient-to-r from-obsidian-950 via-slate-900 to-obsidian-950 relative border-y border-gold-500/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="zoom-in" data-aos-duration="800">
+                <div class="morph-card p-8 lg:p-12 border-gold-500/40 bg-gradient-to-br from-obsidian-900/90 via-slate-900/80 to-emerald-950/40 relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-emerald-500/10 rounded-full filter blur-3xl pointer-events-none"></div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                        <div class="lg:col-span-8 space-y-4">
+                            <span class="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 text-xs font-extrabold uppercase tracking-widest">
+                                <i class="fa-solid fa-calculator mr-1.5"></i> Tool Simulasi Keuangan
+                            </span>
+                            <h2 class="text-2xl sm:text-4xl font-black text-white">
+                                Hitung & Proyeksikan Masa Depan Finansial Anda
+                            </h2>
+                            <p class="text-slate-300 text-sm leading-relaxed max-w-2xl">
+                                Akses <strong class="text-gold-400">Financial Calculator Hub</strong> untuk mensimulasikan Kredit Rekening Koran (KRK), Cicilan & DBR, Deposito, Dana Pensiun, Dana Pendidikan, dan <strong class="text-emerald-400">Kalkulator Pesangon PHK (UU No. 27/2026)</strong> dengan rekomendasi profesional.
+                            </p>
+                        </div>
+                        <div class="lg:col-span-4 flex justify-start lg:justify-end">
+                            <button onclick="navigateTo('kalkulator')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-500 via-emerald-400 to-teal-500 hover:from-emerald-400 hover:to-emerald-300 text-obsidian-950 font-black text-sm uppercase tracking-wider shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-3 hover:shadow-emerald-500/25">
+                                <span>Buka Calculator Hub</span>
+                                <i class="fa-solid fa-arrow-right text-base"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION VIDEO EDUKASI -->
+        <section id="video" class="py-20 bg-obsidian relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up" data-aos-duration="800">
+                    <span class="px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-extrabold uppercase tracking-widest">
+                        Media & Video Edukasi
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-white mt-3">
+                        Video Penjelasan & Strategi Keuangan
+                    </h2>
+                    <p class="text-slate-400 mt-3 text-sm">
+                        Saksikan paparan langsung mengenai mitigasi risiko bisnis, proteksi pinjaman rekening koran, dan konsep pengelolaan aset kertas (paper asset).
+                    </p>
+                </div>
+
+                <!-- Grid 3 Video -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="edu-videos-grid">
+                    
+                    <div class="morph-card p-5 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="relative w-full aspect-video rounded-xl bg-obsidian-950 border border-slate-800 overflow-hidden mb-4">
+                                <video class="edu-video w-full h-full object-cover" controls preload="metadata" poster="https://placehold.co/640x360/0A0E14/D4AF37?text=Video+1:+Proteksi+KRK">
+                                    <source src="video1.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <h3 class="text-base font-bold text-white mb-2">Strategi Proteksi Kredit Rekening Koran (PRK)</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Penjelasan mendalam mengenai cara melindungi aset jaminan bank dan mengamankan likuiditas usaha jika terjadi risiko meninggal pada debitur utama.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="morph-card p-5 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                        <div>
+                            <div class="relative w-full aspect-video rounded-xl bg-obsidian-950 border border-slate-800 overflow-hidden mb-4">
+                                <video class="edu-video w-full h-full object-cover" controls preload="metadata" poster="https://placehold.co/640x360/0A0E14/10B981?text=Video+2:+Paper+Asset">
+                                    <source src="video2.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <h3 class="text-base font-bold text-white mb-2">Menciptakan Paper Asset bernilai Tinggi</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Panduan praktis membangun warisan instan bebas sengketa waris bagi generasi penerus tanpa membebani arus kas operasional bisnis.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="morph-card p-5 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+                        <div>
+                            <div class="relative w-full aspect-video rounded-xl bg-obsidian-950 border border-slate-800 overflow-hidden mb-4">
+                                <video class="edu-video w-full h-full object-cover" controls preload="metadata" poster="https://placehold.co/640x360/0A0E14/D4AF37?text=Video+3:+Simulasi+Kalkulator">
+                                    <source src="video3.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <h3 class="text-base font-bold text-white mb-2">Panduan Simulasi Tool Kalkulator Keuangan</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Video cara memanfaatkan kalkulator cicilan & DBR, deposito, dana pensiun, hingga pesangon UU 27/2026 untuk keputusan finansial yang tepat.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Audio BGM Pemutar 3 Video Edukasi (Terintegrasi dengan Alat Pembungkus) -->
+                <audio id="videoBgmAudio" preload="auto" loop playsinline>
+                    <source src="musik.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </section>
+
+        <!-- FORM KONTAK & DIRECT CTA -->
+        <section id="kontak" class="py-20 bg-obsidian-900 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="morph-card p-8 sm:p-12" data-aos="fade-up" data-aos-duration="800">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                        
+                        <div class="lg:col-span-5 space-y-6">
+                            <span class="px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-extrabold uppercase tracking-widest">
+                                Hubungi Welly Leo
+                            </span>
+                            <h2 class="text-3xl font-black text-white">
+                                Mulai Diskusi Perencanaan Keuangan Anda Hari Ini
+                            </h2>
+                            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                                Silakan isi formulir atau hubungi langsung via WhatsApp untuk menjadwalkan sesi konsultasi khusus mengenai proteksi pinjaman bisnis, dana cadangan pesangon UU 27/2026, maupun perencanaan keuangan perusahaan.
+                            </p>
+
+                            <div class="space-y-4 pt-4">
+                                <div class="flex items-center gap-4 p-3.5 rounded-xl bg-obsidian-950 border border-slate-800">
+                                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-xl flex-shrink-0">
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-[11px] text-slate-400 font-semibold block">WhatsApp Direct</span>
+                                        <a href="https://wa.me/6282227772038?text=Halo%20Welly%20Leo,%20saya%20ingin%20konsultasi" target="_blank" class="text-sm font-bold text-white hover:text-gold-400 transition-colors">
+                                            +62 822-2777-2038
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-7">
+                            <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                                <div>
+                                    <label for="name" class="block text-xs font-bold text-gold-400 uppercase tracking-wider mb-2">Nama Lengkap *</label>
+                                    <input type="text" id="name" required placeholder="Masukkan nama Anda" class="w-full px-4 py-3.5 rounded-xl bg-obsidian-950 border border-slate-800 focus:border-gold-500 text-white outline-none text-xs transition-colors">
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="phone" class="block text-xs font-bold text-gold-400 uppercase tracking-wider mb-2">No. WhatsApp / HP *</label>
+                                        <input type="tel" id="phone" required placeholder="0822xxxxxxx" class="w-full px-4 py-3.5 rounded-xl bg-obsidian-950 border border-slate-800 focus:border-gold-500 text-white outline-none text-xs transition-colors">
+                                    </div>
+                                    <div>
+                                        <label for="service" class="block text-xs font-bold text-gold-400 uppercase tracking-wider mb-2">Layanan yang Dibutuhkan</label>
+                                        <select id="service" class="w-full px-4 py-3.5 rounded-xl bg-obsidian-950 border border-slate-800 focus:border-gold-500 text-white outline-none text-xs transition-colors">
+                                            <option value="Proteksi Kredit Rekening Koran / Bank">Proteksi Kredit Rekening Koran / Bank</option>
+                                            <option value="Dana Cadangan Pesangon UU 27/2026 & Pensiun Korporat">Dana Cadangan Pesangon UU 27/2026 & Pensiun Korporat</option>
+                                            <option value="Paper Asset & Estate Planning">Paper Asset & Estate Planning</option>
+                                            <option value="Asuransi Jiwa & Kesehatan">Asuransi Jiwa & Kesehatan</option>
+                                            <option value="Konsultasi Lainnya">Konsultasi Lainnya</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="message" class="block text-xs font-bold text-gold-400 uppercase tracking-wider mb-2">Pesan / Diskusi Singkat</label>
+                                    <textarea id="message" rows="4" placeholder="Tuliskan kebutuhan Anda..." class="w-full px-4 py-3.5 rounded-xl bg-obsidian-950 border border-slate-800 focus:border-gold-500 text-white outline-none text-xs resize-none transition-colors"></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-700 text-white font-extrabold text-xs tracking-wider uppercase shadow-xl hover:scale-[1.01] transition-all flex items-center justify-center gap-2 hover:shadow-emerald-500/20">
+                                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                                    <span>Kirim Pesan via WhatsApp</span>
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- HALAMAN 2: FINANCIAL CALCULATOR HUB -->
+    <!-- ================================================================= -->
+    <div id="page-kalkulator" class="page-view hidden">
+        
+        <!-- HEADER TITLE SECTION -->
+        <section class="pt-32 pb-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#0c121c] via-[#07090E] to-[#030407]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-down" data-aos-duration="800">
+                <span class="px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-bold uppercase tracking-widest">
+                    Interactive Financial Suite
+                </span>
+                <h1 class="text-3xl sm:text-5xl font-black text-white mt-4">
+                    Kalkulator Keuangan & Perencanaan Terintegrasi
+                </h1>
+                <p class="text-slate-400 text-sm max-w-2xl mx-auto mt-3">
+                    Simulasi presisi untuk Rekening Koran (KRK), Cicilan & DBR, Deposito Compounding, Dana Pensiun, Dana Pendidikan, dan Dana Pesangon PHK (UU No. 27/2026).
+                </p>
+
+                <!-- TABS NAVIGATION -->
+                <div class="flex flex-wrap justify-center gap-3 mt-10">
+                    <button onclick="switchCalc('krk')" id="tab-krk" class="calc-tab-btn active px-5 py-3 rounded-xl border border-slate-800 bg-obsidian-950 text-slate-300 font-bold text-xs flex items-center gap-2.5 transition-all">
+                        <i class="fa-solid fa-building-columns text-gold-400 text-base"></i>
+                        <span>1. Kalkulator Rekening Koran</span>
+                    </button>
+                    <button onclick="switchCalc('cicilan')" id="tab-cicilan" class="calc-tab-btn px-5 py-3 rounded-xl border border-slate-800 bg-obsidian-950 text-slate-300 font-bold text-xs flex items-center gap-2.5 transition-all">
+                        <i class="fa-solid fa-hand-holding-dollar text-gold-400 text-base"></i>
+                        <span>2. Kalkulator Cicilan</span>
+                    </button>
+                    <button onclick="switchCalc('deposito')" id="tab-deposito" class="calc-tab-btn px-5 py-3 rounded-xl border border-slate-800 bg-obsidian-950 text-slate-300 font-bold text-xs flex items-center gap-2.5 transition-all">
+                        <i class="fa-solid fa-piggy-bank text-emerald-400 text-base"></i>
+                        <span>3. Kalkulator Deposito</span>
+                    </button>
+                    <button onclick="switchCalc('pensiun')" id="tab-pensiun" class="calc-tab-btn px-5 py-3 rounded-xl border border-slate-800 bg-obsidian-950 text-slate-300 font-bold text-xs flex items-center gap-2.5 transition-all">
+                        <i class="fa-solid fa-umbrella text-emerald-400 text-base"></i>
+                        <span>4. Dana Pensiun</span>
+                    </button>
+                    <button onclick="switchCalc('pendidikan')" id="tab-pendidikan" class="calc-tab-btn px-5 py-3 rounded-xl border border-slate-800 bg-obsidian-950 text-slate-300 font-bold text-xs flex items-center gap-2.5 transition-all">
+                        <i class="fa-solid fa-graduation-cap text-gold-400 text-base"></i>
+                        <span>5. Dana Pendidikan</span>
+                    </button>
+                    <button onclick="switchCalc('pesangon')" id="tab-pesangon" class="calc-tab-btn px-5 py-3 rounded-xl border border-slate-800 bg-obsidian-950 text-slate-300 font-bold text-xs flex items-center gap-2.5 transition-all">
+                        <i class="fa-solid fa-file-invoice-dollar text-emerald-400 text-base"></i>
+                        <span>6. Dana Pesangon PHK (UU 27/2026)</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALCULATOR MAIN CONTAINER -->
+        <section class="pb-24 bg-obsidian">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="morph-card p-6 sm:p-10 border-gold-500/20" data-aos="fade-up" data-aos-duration="800">
+
+                    <!-- 1. KALKULATOR REKENING KORAN (KRK) -->
+                    <div id="calc-krk" class="calc-content space-y-8">
+                        <div class="border-b border-slate-800 pb-4">
+                            <span class="text-xs font-bold text-gold-400 uppercase tracking-widest">Kalkulator 1</span>
+                            <h2 class="text-2xl font-black text-white mt-1 flex items-center gap-3">
+                                <i class="fa-solid fa-building-columns text-gold-400"></i> Kalkulator Rekening Koran (KRK)
+                            </h2>
+                            <p class="text-xs text-slate-400 mt-1">Simulasi Bunga Harian & Akrual Bulan Berjalan — Standar Perbankan 360 Hari</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                            <div class="lg:col-span-5 space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Plafon Kredit / Limit KRK (Rp)</label>
+                                    <input type="text" id="krk-plafon" oninput="formatInputFormatted(this); calcKRK();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                    <p id="krk-hint-plafon" class="text-[10px] text-emerald-400 mt-1">Terbilang: Rp 0</p>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Baki Debet / Outstanding O/S (Rp)</label>
+                                    <input type="text" id="krk-os" oninput="formatInputFormatted(this); calcKRK();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                    <p id="krk-hint-os" class="text-[10px] text-emerald-400 mt-1">Terbilang: Rp 0</p>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Suku Bunga (% p.a.)</label>
+                                    <input type="number" id="krk-rate" step="0.01" oninput="calcKRK()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Bulan</label>
+                                        <select id="krk-month" onchange="calcKRK()" class="w-full px-3 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                            <option value="" selected disabled>Pilih bulan</option>
+                                            <option value="0">Januari</option>
+                                            <option value="1">Februari</option>
+                                            <option value="2">Maret</option>
+                                            <option value="3">April</option>
+                                            <option value="4">Mei</option>
+                                            <option value="5">Juni</option>
+                                            <option value="6">Juli</option>
+                                            <option value="7">Agustus</option>
+                                            <option value="8">September</option>
+                                            <option value="9">Oktober</option>
+                                            <option value="10">November</option>
+                                            <option value="11">Desember</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Tahun</label>
+                                        <input type="number" id="krk-year" oninput="calcKRK()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                    </div>
+                                </div>
+                                <div class="p-3 rounded-xl bg-obsidian-950 border border-slate-800 text-xs text-slate-400">
+                                    <span class="text-gold-400 font-bold">Pembagi Hari:</span> 360 Hari / Tahun (Standar Baku KRK Perbankan)
+                                </div>
+                                <button onclick="calcKRK()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-obsidian-950 font-extrabold text-xs uppercase shadow-lg hover:scale-[1.01] transition-all">Hitung Bunga KRK</button>
+                            </div>
+
+                            <div class="lg:col-span-7 space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div class="p-4 rounded-xl bg-obsidian-950 border border-slate-800">
+                                        <span class="text-[11px] text-slate-400 block uppercase tracking-wider">Bunga Harian</span>
+                                        <span id="res-krk-harian" class="text-xl font-black text-gold-400">Rp 0</span>
+                                        <p class="text-[10px] text-slate-500 mt-1 font-mono">(O/S × Bunga) / 360</p>
+                                    </div>
+                                    <div class="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/30">
+                                        <span class="text-[11px] text-emerald-300 block uppercase tracking-wider">Total Bunga Bulan Berjalan</span>
+                                        <span id="res-krk-total" class="text-2xl font-black text-emerald-400">Rp 0</span>
+                                        <p id="res-krk-periode" class="text-[10px] text-emerald-300/70 mt-1">Akumulasi Bunga</p>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="p-3 rounded-xl bg-obsidian-950 border border-slate-800 text-center">
+                                        <span class="text-[10px] text-slate-400 block">Penggunaan Plafon</span>
+                                        <span id="res-krk-penggunaan" class="text-base font-bold text-white">0%</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-obsidian-950 border border-slate-800 text-center">
+                                        <span class="text-[10px] text-slate-400 block">Sisa Limit</span>
+                                        <span id="res-krk-sisa" class="text-base font-bold text-white">Rp 0</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-obsidian-950 border border-slate-800 text-center">
+                                        <span class="text-[10px] text-slate-400 block">O/S + Bunga</span>
+                                        <span id="res-krk-kewajiban" class="text-base font-bold text-gold-400">Rp 0</span>
+                                    </div>
+                                </div>
+
+                                <div class="rounded-xl border border-slate-800 overflow-hidden">
+                                    <div class="px-4 py-3 bg-obsidian-950 border-b border-slate-800 flex justify-between items-center">
+                                        <span class="text-xs font-bold text-white flex items-center gap-2">
+                                            <i class="fa-solid fa-list-check text-emerald-400"></i> Rincian Akrual Bunga Harian
+                                        </span>
+                                        <span id="res-krk-badge" class="text-[10px] bg-gold-500/15 text-gold-400 font-semibold px-2 py-0.5 rounded">-</span>
+                                    </div>
+                                    <div class="max-h-56 overflow-y-auto">
+                                        <table class="w-full text-left text-[11px]">
+                                            <thead class="bg-obsidian-950 text-slate-400 uppercase font-semibold sticky top-0 border-b border-slate-800">
+                                                <tr>
+                                                    <th class="p-2.5">Tanggal</th>
+                                                    <th class="p-2.5">Baki Debet</th>
+                                                    <th class="p-2.5">Bunga Harian</th>
+                                                    <th class="p-2.5">Akumulasi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="res-krk-table" class="divide-y divide-slate-800/60 text-slate-300">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-xs space-y-1">
+                                    <span class="font-bold text-gold-400 flex items-center gap-1.5">
+                                        <i class="fa-solid fa-square-poll-vertical"></i> Catatan Profesional Welly Leo:
+                                    </span>
+                                    <p id="res-krk-summary" class="text-slate-300 leading-relaxed"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. KALKULATOR CICILAN & DBR -->
+                    <div id="calc-cicilan" class="calc-content hidden space-y-8">
+                        <div class="border-b border-slate-800 pb-4">
+                            <span class="text-xs font-bold text-gold-400 uppercase tracking-widest">Kalkulator 2</span>
+                            <h2 class="text-2xl font-black text-white mt-1 flex items-center gap-3">
+                                <i class="fa-solid fa-hand-holding-dollar text-gold-400"></i> Kalkulator Cicilan & Analisis DBR
+                            </h2>
+                            <p class="text-xs text-slate-400 mt-1">Angsuran, total bunga, dan Debt Burden Ratio (DBR) berdasarkan pendapatan bulanan.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                            <div class="lg:col-span-5 space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Jumlah Pinjaman / Plafond (Rp)</label>
+                                    <input type="text" id="cicilan-principal" oninput="formatInputFormatted(this); calcCicilan();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Suku Bunga (% p.a.)</label>
+                                        <input type="number" id="cicilan-rate" step="0.1" oninput="calcCicilan()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Tenor (Tahun, maks 30)</label>
+                                        <input type="number" id="cicilan-tenure" min="1" max="30" oninput="calcCicilan()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Skema Bunga</label>
+                                    <select id="cicilan-type" onchange="calcCicilan()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                        <option value="" selected disabled>Pilih skema bunga</option>
+                                        <option value="anuitas">Anuitas (Efektif - Standar Bank)</option>
+                                        <option value="flat">Flat (Bunga Tetap)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Pendapatan Bulanan (Rp) <span class="text-emerald-400 font-normal">(wajib untuk DBR)</span></label>
+                                    <input type="text" id="cicilan-income" oninput="formatInputFormatted(this); calcCicilan();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Angsuran Lain per Bulan (Rp) <span class="text-slate-500 font-normal">(opsional)</span></label>
+                                    <input type="text" id="cicilan-existing" oninput="formatInputFormatted(this); calcCicilan();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                </div>
+                                <button onclick="calcCicilan()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-obsidian-950 font-extrabold text-xs uppercase shadow-lg hover:scale-[1.01] transition-all">Hitung Angsuran & DBR</button>
+                            </div>
+
+                            <div class="lg:col-span-7 bg-obsidian-950/90 rounded-2xl p-6 border border-slate-800 space-y-4">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block border-b border-slate-800 pb-2">Rincian & Beban Pinjaman</span>
+                                <div class="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/30">
+                                    <span class="text-xs text-emerald-300 font-semibold block">Angsuran Bulanan:</span>
+                                    <span id="res-cicilan-monthly" class="text-3xl font-black text-emerald-400">Rp 0</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3 text-xs">
+                                    <div class="p-3 rounded-xl bg-obsidian-900 border border-slate-800">
+                                        <span class="text-[11px] text-slate-400 block">Total Bunga:</span>
+                                        <span id="res-cicilan-interest" class="font-bold text-gold-400 text-base">Rp 0</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-obsidian-900 border border-slate-800">
+                                        <span class="text-[11px] text-slate-400 block">Total Pokok + Bunga:</span>
+                                        <span id="res-cicilan-total" class="font-bold text-white text-base">Rp 0</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-obsidian-900 border border-slate-800">
+                                        <span class="text-[11px] text-slate-400 block">DBR (Debt Burden Ratio):</span>
+                                        <span id="res-cicilan-dbr" class="font-bold text-white text-base">-</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-obsidian-900 border border-slate-800">
+                                        <span class="text-[11px] text-slate-400 block">Batas Angsuran Baru (DBR 30%):</span>
+                                        <span id="res-cicilan-cap" class="font-bold text-slate-200 text-base">-</span>
+                                    </div>
+                                </div>
+                                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-xs space-y-2">
+                                    <span class="font-bold text-gold-400 flex items-center gap-1.5 text-sm">
+                                        <i class="fa-solid fa-chart-pie"></i> Rekomendasi Profesional Welly Leo
+                                    </span>
+                                    <div id="cicilan-rec" class="text-slate-300 leading-relaxed space-y-2"></div>
+                                    <p id="cicilan-sum" class="text-slate-400 leading-relaxed"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Jadwal Angsuran Lengkap</div>
+                            <div class="rounded-xl border border-slate-800 overflow-hidden">
+                                <div class="max-h-96 overflow-auto">
+                                    <table class="w-full text-left text-[11px] text-slate-300 font-mono">
+                                        <thead class="bg-obsidian-950 text-gold-400 font-bold uppercase sticky top-0 border-b border-slate-800">
+                                            <tr>
+                                                <th class="py-2.5 px-3 text-center">Bulan</th>
+                                                <th class="py-2.5 px-3">Angsuran</th>
+                                                <th class="py-2.5 px-3">Pokok</th>
+                                                <th class="py-2.5 px-3">Bunga</th>
+                                                <th class="py-2.5 px-3 text-right">Sisa Pokok</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="cicilan-table-body" class="divide-y divide-slate-800/60"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. KALKULATOR DEPOSITO COMPOUNDING -->
+                    <div id="calc-deposito" class="calc-content hidden space-y-8">
+                        <div class="border-b border-slate-800 pb-4">
+                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Kalkulator 3</span>
+                            <h2 class="text-2xl font-black text-white mt-1 flex items-center gap-3">
+                                <i class="fa-solid fa-piggy-bank text-emerald-400"></i> Kalkulator Deposito Compounding (IDR / USD)
+                            </h2>
+                            <p class="text-xs text-slate-400 mt-1">Penempatan pokok berkala, bunga berbunga, PPh final 20%, dan tabel proyeksi lengkap.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                            <div class="lg:col-span-5 space-y-4">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Mata Uang</label>
+                                        <select id="depo-cur" onchange="toggleDepoCur()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                            <option value="" selected disabled>Pilih mata uang</option>
+                                            <option value="IDR">IDR (Rupiah)</option>
+                                            <option value="USD">USD (Dollar AS)</option>
+                                        </select>
+                                    </div>
+                                    <div id="depo-kurs-wrap" class="hidden">
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Kurs USD ke IDR (asumsi)</label>
+                                        <input type="text" id="depo-kurs" oninput="formatInputFormatted(this); calcDeposito();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Penempatan Pokok per Periode</label>
+                                    <input type="text" id="depo-amount" oninput="formatInputFormatted(this); calcDeposito();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Frekuensi Setoran</label>
+                                        <select id="depo-freq" onchange="toggleDepoFreq()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                            <option value="" selected disabled>Pilih frekuensi</option>
+                                            <option value="bulanan">Bulanan</option>
+                                            <option value="tahunan">Tahunan</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label id="depo-deposit-label" class="block text-xs font-bold text-slate-300 mb-1">Lama Setoran (1–20 Tahun)</label>
+                                        <input type="number" id="depo-deposit-n" min="1" max="20" onchange="toggleDepoFreq()" oninput="calcDeposito()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label id="depo-tenor-label" class="block text-xs font-bold text-slate-300 mb-1">Total Tenor Compounding (Tahun)</label>
+                                        <select id="depo-tenor-sel" onchange="calcDeposito()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                            <option value="" selected disabled>Pilih tenor</option>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="25">25</option>
+                                            <option value="30">30</option>
+                                            <option value="40">40</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                            <option value="120">120</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Suku Bunga p.a. (%)</label>
+                                        <input type="number" id="depo-rate" step="0.1" oninput="calcDeposito()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Usia Awal <span class="text-slate-500 font-normal">(opsional)</span></label>
+                                        <input type="number" id="depo-age" min="0" max="100" oninput="calcDeposito()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Asumsi Inflasi p.a. (%)</label>
+                                        <input type="number" id="depo-infl" step="0.1" oninput="calcDeposito()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                    </div>
+                                </div>
+                                <p class="text-[11px] text-slate-500">Bunga dikapitalisasi tiap periode. PPh final bunga 20%. Setoran bulanan: 1–12 bulan. Setoran tahunan: 1–20 tahun.</p>
+                            </div>
+
+                            <div class="lg:col-span-7 bg-obsidian-950/90 rounded-2xl p-6 border border-slate-800 space-y-4">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block border-b border-slate-800 pb-2">Proyeksi Deposito Compounding</span>
+                                <div class="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/30">
+                                    <span class="text-xs text-emerald-300 font-semibold block">Nilai Akhir (Pokok + Bunga Bersih)</span>
+                                    <span id="depo-o-final" class="text-2xl font-black text-emerald-400">Rp 0</span>
+                                    <span id="depo-idr-wrap" class="hidden block text-xs text-emerald-300/80 mt-1">Setara <span id="depo-o-idr">Rp 0</span></span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3 text-xs">
+                                    <div class="p-3 rounded-xl bg-obsidian-900 border border-slate-800">
+                                        <span class="text-[11px] text-slate-400 block">Total Modal Disetor</span>
+                                        <span id="depo-o-modal" class="font-bold text-white text-base">Rp 0</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-obsidian-900 border border-slate-800">
+                                        <span class="text-[11px] text-slate-400 block">Total Bunga Kotor</span>
+                                        <span id="depo-o-gross" class="font-bold text-gold-400 text-base">Rp 0</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-obsidian-900 border border-slate-800">
+                                        <span class="text-[11px] text-slate-400 block">PPh Final 20%</span>
+                                        <span id="depo-o-tax" class="font-bold text-rose-400 text-base">Rp 0</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-obsidian-900 border border-slate-800">
+                                        <span class="text-[11px] text-slate-400 block">Total Bunga Bersih</span>
+                                        <span id="depo-o-net" class="font-bold text-emerald-400 text-base">Rp 0</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-obsidian-900 border border-slate-800">
+                                        <span class="text-[11px] text-slate-400 block">Imbal Hasil Bersih Efektif p.a.</span>
+                                        <span id="depo-o-eff" class="font-bold text-white text-base">0%</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-obsidian-900 border border-slate-800">
+                                        <span class="text-[11px] text-slate-400 block">Imbal Hasil Riil p.a.</span>
+                                        <span id="depo-o-real" class="font-bold text-white text-base">0%</span>
+                                    </div>
+                                </div>
+                                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-xs space-y-2">
+                                    <span class="font-bold text-gold-400 flex items-center gap-1.5 text-sm">
+                                        <i class="fa-solid fa-chart-line"></i> Rekomendasi Profesional Welly Leo
+                                    </span>
+                                    <div id="depo-rec" class="text-slate-300 leading-relaxed space-y-2"></div>
+                                    <p id="depo-sum" class="text-slate-400 leading-relaxed"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Tabel Rincian Proyeksi Lengkap</div>
+                            <div class="rounded-xl border border-slate-800 overflow-hidden">
+                                <div class="max-h-96 overflow-auto">
+                                    <table class="w-full text-left text-[11px] text-slate-300 font-mono">
+                                        <thead class="bg-obsidian-950 text-gold-400 font-bold uppercase sticky top-0 border-b border-slate-800">
+                                            <tr>
+                                                <th id="depo-th-period" class="py-2.5 px-2 text-center">TAHUN</th>
+                                                <th class="py-2.5 px-2 text-center">Usia</th>
+                                                <th class="py-2.5 px-2">Setoran</th>
+                                                <th class="py-2.5 px-2">Pokok</th>
+                                                <th class="py-2.5 px-2">Total</th>
+                                                <th class="py-2.5 px-2">Bunga Kotor</th>
+                                                <th class="py-2.5 px-2">PPh 20%</th>
+                                                <th class="py-2.5 px-2">Bunga Bersih</th>
+                                                <th class="py-2.5 px-2 text-right">Pokok + Bunga</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="depo-table-body" class="divide-y divide-slate-800/60"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. KALKULATOR DANA PENSIUN -->
+                    <div id="calc-pensiun" class="calc-content hidden space-y-8">
+                        <div class="border-b border-slate-800 pb-4">
+                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Kalkulator 4</span>
+                            <h2 class="text-2xl font-black text-white mt-1 flex items-center gap-3">
+                                <i class="fa-solid fa-umbrella text-emerald-400"></i> Kalkulator Perencanaan Dana Pensiun
+                            </h2>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                            <div class="lg:col-span-5 space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Pengeluaran Bulanan Saat Ini (Rp)</label>
+                                    <input type="text" id="pensiun-exp" oninput="formatInputFormatted(this); calcPensiun();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Usia Saat Ini</label>
+                                        <input type="number" id="pensiun-age-curr" oninput="calcPensiun()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Usia Pensiun Target</label>
+                                        <input type="number" id="pensiun-age-ret" oninput="calcPensiun()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Lama Pensiun (Tahun)</label>
+                                        <input type="number" id="pensiun-duration" oninput="calcPensiun()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Asumsi Inflasi (% / thn)</label>
+                                        <input type="number" id="pensiun-inflation" step="0.1" oninput="calcPensiun()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Asumsi Return Investasi (% / thn)</label>
+                                    <input type="number" id="pensiun-return" step="0.1" oninput="calcPensiun()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                </div>
+                                <button onclick="calcPensiun()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-extrabold text-xs uppercase shadow-lg hover:scale-[1.01] transition-all">Hitung Modal Pensiun</button>
+                            </div>
+
+                            <div class="lg:col-span-7 bg-obsidian-950/90 rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
+                                <div class="space-y-4">
+                                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block border-b border-slate-800 pb-2">Proyeksi Dana Masa Pensiun</span>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div class="p-3.5 rounded-xl bg-obsidian-900 border border-slate-800">
+                                            <span class="text-[11px] text-slate-400 block">Pengeluaran Bulanan Saat Pensiun:</span>
+                                            <span id="res-pensiun-monthly" class="text-lg font-bold text-gold-400">Rp 0</span>
+                                        </div>
+                                        <div class="p-3.5 rounded-xl bg-obsidian-900 border border-slate-800">
+                                            <span class="text-[11px] text-slate-400 block">Target Total Modal Pensiun:</span>
+                                            <span id="res-pensiun-total" class="text-xl font-black text-emerald-400">Rp 0</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/30">
+                                        <span class="text-[11px] text-emerald-300 font-semibold block">Investasi Bulanan s.d Usia Pensiun:</span>
+                                        <span id="res-pensiun-saving" class="text-2xl font-black text-white">Rp 0 / bulan</span>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6 p-5 rounded-2xl bg-gradient-to-br from-slate-900 to-obsidian-950 border border-gold-500/30 space-y-3">
+                                    <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
+                                        <div class="w-6 h-6 rounded-md bg-gold-500 text-obsidian-950 font-black flex items-center justify-center text-xs">WL</div>
+                                        <h4 class="text-xs font-extrabold text-gold-400 uppercase tracking-wider">Analisis & Rekomendasi Profesional Welly Leo</h4>
+                                    </div>
+                                    <div id="res-pensiun-analysis" class="text-xs text-slate-300 space-y-2 leading-relaxed"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. KALKULATOR DANA PENDIDIKAN -->
+                    <div id="calc-pendidikan" class="calc-content hidden space-y-8">
+                        <div class="border-b border-slate-800 pb-4">
+                            <span class="text-xs font-bold text-gold-400 uppercase tracking-widest">Kalkulator 5</span>
+                            <h2 class="text-2xl font-black text-white mt-1 flex items-center gap-3">
+                                <i class="fa-solid fa-graduation-cap text-gold-400"></i> Kalkulator Dana Pendidikan Anak
+                            </h2>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                            <div class="lg:col-span-5 space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Biaya Masuk/Sekolah Hari Ini (Rp)</label>
+                                    <input type="text" id="edu-cost" oninput="formatInputFormatted(this); calcPendidikan();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Usia Anak Sekarang</label>
+                                        <input type="number" id="edu-age-curr" oninput="calcPendidikan()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Usia Target Jenjang</label>
+                                        <input type="number" id="edu-age-target" oninput="calcPendidikan()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Inflasi Pendidikan (%/thn)</label>
+                                        <input type="number" id="edu-inflation" step="0.1" oninput="calcPendidikan()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-300 mb-1">Return Investasi (%/thn)</label>
+                                        <input type="number" id="edu-return" step="0.1" oninput="calcPendidikan()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-gold-500 outline-none">
+                                    </div>
+                                </div>
+                                <button onclick="calcPendidikan()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-obsidian-950 font-extrabold text-xs uppercase shadow-lg hover:scale-[1.01] transition-all">Hitung Dana Pendidikan</button>
+                            </div>
+
+                            <div class="lg:col-span-7 bg-obsidian-950/90 rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
+                                <div class="space-y-4">
+                                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block border-b border-slate-800 pb-2">Proyeksi & Hasil Perhitungan</span>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div class="p-3.5 rounded-xl bg-obsidian-900 border border-slate-800">
+                                            <span class="text-[11px] text-slate-400 block">Sisa Horizon Waktu:</span>
+                                            <span id="res-edu-years" class="text-lg font-bold text-white">0 Tahun</span>
+                                        </div>
+                                        <div class="p-3.5 rounded-xl bg-obsidian-900 border border-slate-800">
+                                            <span class="text-[11px] text-slate-400 block">Estimasi Biaya Masa Depan:</span>
+                                            <span id="res-edu-future" class="text-xl font-black text-gold-400">Rp 0</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/30">
+                                        <span class="text-[11px] text-emerald-300 font-semibold block">Alokasi Menabung/Investasi Bulanan Required:</span>
+                                        <span id="res-edu-monthly" class="text-2xl font-black text-emerald-400">Rp 0 / bulan</span>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-xs space-y-1">
+                                    <span class="font-bold text-gold-400 flex items-center gap-1.5">
+                                        <i class="fa-solid fa-square-poll-vertical"></i> Kesimpulan Perencanaan Dana Pendidikan:
+                                    </span>
+                                    <p id="res-edu-summary" class="text-slate-300 leading-relaxed"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 border-t border-slate-800 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div class="space-y-3">
+                                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-calculator text-emerald-400"></i> Cara Menghitung Dana Pendidikan
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    Biaya pendidikan naik lebih cepat dari inflasi umum, biasanya <strong>10–15% per tahun</strong>. Karena itu, biaya sekolah atau kuliah hari ini tidak bisa dipakai langsung sebagai target akhir.
+                                </p>
+                                <div class="p-3.5 rounded-xl bg-obsidian-950 border border-slate-800 text-xs text-gold-300 font-mono">
+                                    $$\text{Biaya Nanti} = \text{Biaya Hari Ini} \times (1 + \text{Inflasi Pendidikan})^{\text{Tahun}}$$
+                                </div>
+                                <ul class="text-xs text-slate-400 space-y-1.5 list-disc pl-4">
+                                    <li><strong>Biaya hari ini dinaikkan dengan inflasi pendidikan.</strong></li>
+                                    <li><strong>Dana awal ikut tumbuh:</strong> Proyeksi hasil investasi dari modal yang sudah Anda miliki saat ini.</li>
+                                    <li><strong>Menghitung cicilan investasi bulanan:</strong> Kekurangan dana dibagi menjadi alokasi investasi bulanan yang tumbuh secara bunga majemuk.</li>
+                                </ul>
+                            </div>
+
+                            <div class="space-y-3">
+                                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-lightbulb text-gold-400"></i> Tips Menyiapkan Dana Pendidikan
+                                </h3>
+                                <div class="space-y-2 text-xs text-slate-300">
+                                    <div class="p-3 rounded-xl bg-obsidian-950 border border-slate-800">
+                                        <strong class="text-white block mb-0.5">1. Pisahkan Target Per Jenjang</strong>
+                                        Uang pangkal SD, SMP, SMA, dan Kuliah punya horizon waktu berbeda. Hitung masing-masing secara terpisah.
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-obsidian-950 border border-slate-800">
+                                        <strong class="text-white block mb-0.5">2. Pilih Instrumen Tepat</strong>
+                                        Tujuan &lt;3 tahun pilih instrumen stabil (deposito/RDPU). Untuk &gt;5 tahun, reksa dana saham/indeks cocok dipertimbangkan.
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-obsidian-950 border border-slate-800">
+                                        <strong class="text-white block mb-0.5">3. Derisking Bertahap</strong>
+                                        Pindahkan dana ke instrumen aman 1–2 tahun sebelum dana digunakan agar terhindar dari potensi penurunan pasar.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. KALKULATOR DANA PESANGON PHK (UU NO. 27 TAHUN 2026) -->
+                    <div id="calc-pesangon" class="calc-content hidden space-y-8">
+                        <div class="border-b border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                            <div>
+                                <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Kalkulator 6 • Regulasi Terbaru</span>
+                                <h2 class="text-2xl font-black text-white mt-1 flex items-center gap-3">
+                                    <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i> Kalkulator Pesangon PHK (UU No. 27/2026 & PPh 21)
+                                </h2>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-500/15 border border-gold-500/40 text-gold-300 text-[11px] font-bold self-start sm:self-center">
+                                <i class="fa-solid fa-gavel text-gold-400"></i> Menggantikan PP 35/2021
+                            </span>
+                        </div>
+
+                        <!-- Banner Info Pembaruan Regulasi UU 27/2026 -->
+                        <div class="p-4 rounded-xl bg-gradient-to-r from-gold-500/10 via-obsidian-950 to-emerald-500/10 border border-gold-500/30 text-xs text-slate-300 leading-relaxed flex items-start gap-3">
+                            <i class="fa-solid fa-circle-info text-gold-400 text-base mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <strong class="text-gold-300 block mb-0.5">Pembaruan Regulasi Ketenagakerjaan (Berlaku per 28 Oktober 2026):</strong>
+                                Perhitungan pesangon kini mengacu pada <strong class="text-white">UU No. 27 Tahun 2026 tentang Pelindungan Ketenagakerjaan</strong> yang menggantikan ketentuan pesangon di PP No. 35 Tahun 2021. Faktor pengali <strong class="text-emerald-400">0,5× dan 0,75× dihapus</strong>, pengali usia pensiun naik menjadi <strong class="text-emerald-400">2× UP</strong>, dan perusahaan (non-UMK) wajib menyediakan <strong class="text-gold-300">Dana Cadangan Pesangon</strong> (Pasal 253).
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                            <!-- Input Form -->
+                            <div class="lg:col-span-5 space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Gaji Pokok + Tunjangan Tetap (Rp)</label>
+                                    <input type="text" id="pesangon-gaji" oninput="formatInputFormatted(this); calcPesangon();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Masa Kerja (Tahun)</label>
+                                    <input type="number" id="pesangon-years" step="0.5" oninput="calcPesangon()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Alasan PHK (Sesuai UU No. 27/2026)</label>
+                                    <select id="pesangon-reason" onchange="calcPesangon()" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                        <option value="" selected disabled>Pilih alasan PHK</option>
+                                        <option value="pensiun">Memasuki Usia Pensiun (2× UP + 1× UPMK) — Pasal 247</option>
+                                        <option value="merger_tolak">Merger/Akuisisi: Pengusaha Menolak (2× UP + 1× UPMK) — Pasal 236</option>
+                                        <option value="sakit">Sakit Berkepanjangan >12 Bln (2× UP + 2× UPMK)</option>
+                                        <option value="meninggal">Pekerja Meninggal Dunia (2× UP + 1× UPMK) — Pasal 249</option>
+                                        <option value="tutup_nonrugi">Perusahaan Tutup Permanen Bukan Rugi (1× UP + 1,5× UPMK)</option>
+                                        <option value="tutup_rugi">Perusahaan Tutup Rugi / Pailit / Force Majeure (1× UP + 1× UPMK) — Pasal 237–240</option>
+                                        <option value="sp3">Pelanggaran Setelah SP 1, 2, dan 3 (1× UP + 1× UPMK) — Pasal 244</option>
+                                        <option value="resign">Resign / Mangkir 5 Hari (UPH + Uang Pisah min. 1 Bln Upah) — Pasal 233</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Uang Penggantian Hak (UPH) & Uang Pisah (Rp)</label>
+                                    <input type="text" id="pesangon-uph" oninput="formatInputFormatted(this); calcPesangon();" class="w-full px-4 py-2.5 rounded-xl bg-obsidian-950 border border-slate-800 text-white text-xs focus:border-emerald-500 outline-none">
+                                    <p class="text-[10px] text-slate-400 mt-1">Catatan UU 27/2026: Uang pisah resign/mangkir minimal 1 bulan upah jika belum diatur di PK/PP/PKB.</p>
+                                </div>
+                                <button onclick="calcPesangon()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-extrabold text-xs uppercase shadow-lg hover:scale-[1.01] transition-all">Hitung Hak Pesangon (UU 27/2026)</button>
+                            </div>
+
+                            <!-- Output Display -->
+                            <div class="lg:col-span-7 bg-obsidian-950/90 rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
+                                <div class="space-y-3">
+                                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block border-b border-slate-800 pb-2">Rincian Hak Kompensasi (UU No. 27 Tahun 2026)</span>
+                                    <div class="grid grid-cols-2 gap-3 text-xs">
+                                        <div class="p-3 rounded-xl bg-obsidian-900 border border-slate-800">
+                                            <span class="text-[10px] text-slate-400 block">Uang Pesangon (UP):</span>
+                                            <span id="res-pesangon-up" class="font-bold text-white text-sm">Rp 0</span>
+                                        </div>
+                                        <div class="p-3 rounded-xl bg-obsidian-900 border border-slate-800">
+                                            <span class="text-[10px] text-slate-400 block">Uang Penghargaan (UPMK):</span>
+                                            <span id="res-pesangon-upmk" class="font-bold text-white text-sm">Rp 0</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-3.5 rounded-xl bg-obsidian-900 border border-slate-800 flex justify-between items-center">
+                                        <span class="text-xs text-slate-400">Total Kompensasi Bruto:</span>
+                                        <span id="res-pesangon-bruto" class="text-base font-bold text-gold-400">Rp 0</span>
+                                    </div>
+                                    <div class="p-3.5 rounded-xl bg-rose-950/20 border border-rose-500/30 flex justify-between items-center">
+                                        <span class="text-xs text-rose-300">Potongan Pajak PPh 21 Final:</span>
+                                        <span id="res-pesangon-tax" class="text-base font-bold text-rose-400">- Rp 0</span>
+                                    </div>
+                                    <div class="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 flex justify-between items-center">
+                                        <span class="text-xs font-bold text-emerald-300">Total Pesangon Bersih (Netto):</span>
+                                        <span id="res-pesangon-netto" class="text-2xl font-black text-emerald-400">Rp 0</span>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-xs space-y-1">
+                                    <span class="font-bold text-emerald-400 flex items-center gap-1.5">
+                                        <i class="fa-solid fa-square-poll-vertical"></i> Analisis Regulasi & Rekomendasi Welly Leo:
+                                    </span>
+                                    <p id="res-pesangon-summary" class="text-slate-300 leading-relaxed"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TEKS PENJELASAN DAN TABEL PERATURAN UU 27/2026 -->
+                        <div class="pt-6 border-t border-slate-800 space-y-6">
+                            <div>
+                                <h3 class="text-base font-bold text-white flex items-center gap-2 mb-2">
+                                    <i class="fa-solid fa-scale-balanced text-gold-400"></i> Perubahan Utama Pesangon di UU No. 27 Tahun 2026 (Menggantikan PP 35/2021)
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    Berdasarkan <strong>UU No. 27 Tahun 2026 tentang Pelindungan Ketenagakerjaan</strong> (berlaku 28 Oktober 2026), tabel dasar masa kerja <strong>Uang Pesangon (UP: 1–9 bulan upah)</strong> dan <strong>Uang Penghargaan Masa Kerja (UPMK: 2–10 bulan upah mulai 3 tahun)</strong> tetap berlaku, namun <strong>faktor pengali alasan PHK mengalami kenaikan signifikan</strong> karena penghapusan skema pengali 0,5× dan 0,75×.
+                                </p>
+                            </div>
+
+                            <!-- Tabel Perbandingan PP 35/2021 vs UU 27/2026 -->
+                            <div class="space-y-2">
+                                <span class="text-xs font-bold text-gold-400 block">Perbandingan Faktor Pengali: PP 35/2021 vs UU No. 27 Tahun 2026 (Pasal 233–249)</span>
+                                <div class="overflow-x-auto border border-slate-800 rounded-xl">
+                                    <table class="w-full text-xs text-left text-slate-300">
+                                        <thead class="bg-obsidian-950 text-gold-400 font-bold border-b border-slate-800">
+                                            <tr>
+                                                <th class="p-2.5">Alasan PHK</th>
+                                                <th class="p-2.5">Aturan Lama (PP 35/2021)</th>
+                                                <th class="p-2.5 text-emerald-400">Aturan Baru (UU 27/2026)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-slate-800/60 bg-obsidian-900/50">
+                                            <tr>
+                                                <td class="p-2.5 font-semibold text-white">Memasuki Usia Pensiun (Pasal 247)</td>
+                                                <td class="p-2.5 text-slate-400">1,75× UP + 1× UPMK</td>
+                                                <td class="p-2.5 font-bold text-emerald-400">2× UP + 1× UPMK</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-semibold text-white">Tutup karena Rugi / Pailit / Force Majeure (Pasal 237–240)</td>
+                                                <td class="p-2.5 text-slate-400">0,5× UP + 1× UPMK</td>
+                                                <td class="p-2.5 font-bold text-emerald-400">1× UP + 1× UPMK</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-semibold text-white">Pelanggaran Setelah SP 1, 2, dan 3 (Pasal 244)</td>
+                                                <td class="p-2.5 text-slate-400">0,5× UP + 1× UPMK</td>
+                                                <td class="p-2.5 font-bold text-emerald-400">1× UP + 1× UPMK</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-semibold text-white">Merger/Akuisisi: Pengusaha Menolak (Pasal 236)</td>
+                                                <td class="p-2.5 text-slate-400">1× UP + 1× UPMK</td>
+                                                <td class="p-2.5 font-bold text-emerald-400">2× UP + 1× UPMK</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-semibold text-white">Perusahaan Tutup Permanen (Bukan Rugi)</td>
+                                                <td class="p-2.5 text-slate-400">1× UP + 1× UPMK</td>
+                                                <td class="p-2.5 font-bold text-emerald-400">1× UP + 1,5× UPMK</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-semibold text-white">Sakit Berkepanjangan (&gt;12 Bulan)</td>
+                                                <td class="p-2.5 text-slate-400">2× UP + 1× UPMK</td>
+                                                <td class="p-2.5 font-bold text-emerald-400">2× UP + 2× UPMK</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-semibold text-white">Pekerja Meninggal Dunia (Pasal 249)</td>
+                                                <td class="p-2.5 text-slate-400">2× UP + 1× UPMK</td>
+                                                <td class="p-2.5 font-bold text-emerald-400">2× UP + 1× UPMK</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-semibold text-white">Resign / Mangkir 5 Hari Berturut-turut (Pasal 233)</td>
+                                                <td class="p-2.5 text-slate-400">UPH + Uang Pisah</td>
+                                                <td class="p-2.5 font-bold text-emerald-400">UPH + Uang Pisah (min. 1 bln upah jika belum diatur)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Poin Penting Korporat & Dana Cadangan Pesangon -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                                <div class="p-4 rounded-xl bg-obsidian-950 border border-gold-500/25 space-y-1">
+                                    <span class="font-bold text-gold-400 block"><i class="fa-solid fa-vault mr-1.5"></i>Dana Cadangan Pesangon (Pasal 253)</span>
+                                    <p class="text-slate-300 leading-relaxed">
+                                        Pengusaha (selain usaha mikro & kecil) kini <strong>wajib menyediakan Dana Cadangan Pesangon</strong> untuk menjamin hak PHK di luar usia pensiun atau pekerja tanpa program pensiun.
+                                    </p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-obsidian-950 border border-emerald-500/25 space-y-1">
+                                    <span class="font-bold text-emerald-400 block"><i class="fa-solid fa-piggy-bank mr-1.5"></i>Integrasi Program Pensiun (Pasal 248)</span>
+                                    <p class="text-slate-300 leading-relaxed">
+                                        Iuran pensiun yang dibayar pengusaha tetap diperhitungkan sebagai bagian pesangon; jika nilainya di bawah hak menurut UU 27/2026, perusahaan wajib membayar selisihnya.
+                                    </p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-obsidian-950 border border-rose-500/25 space-y-1">
+                                    <span class="font-bold text-rose-400 block"><i class="fa-solid fa-shield-halved mr-1.5"></i>Jaminan Aset & Sanksi (Pasal 295 & 299)</span>
+                                    <p class="text-slate-300 leading-relaxed">
+                                        Hak pesangon pekerja menjadi utang yang dijamin dengan seluruh aset pemberi kerja, dan kesengajaan tidak membayar dapat dikenai sanksi pidana hingga 4 tahun.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <!-- Tabel Ketentuan Masa Kerja -->
+                                <div class="space-y-2">
+                                    <span class="text-xs font-bold text-gold-400 block">Tabel Dasar Masa Kerja UP & UPMK (UU 27/2026)</span>
+                                    <div class="overflow-x-auto border border-slate-800 rounded-xl">
+                                        <table class="w-full text-xs text-left text-slate-300">
+                                            <thead class="bg-obsidian-950 text-gold-400 font-bold border-b border-slate-800">
+                                                <tr>
+                                                    <th class="p-2.5">Masa Kerja</th>
+                                                    <th class="p-2.5">Pesangon (UP)</th>
+                                                    <th class="p-2.5">UPMK</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-slate-800/60 bg-obsidian-900/50">
+                                                <tr><td class="p-2.5">&lt; 1 tahun</td><td class="p-2.5">1 bln upah</td><td class="p-2.5">-</td></tr>
+                                                <tr><td class="p-2.5">1 - &lt; 2 tahun</td><td class="p-2.5">2 bln upah</td><td class="p-2.5">-</td></tr>
+                                                <tr><td class="p-2.5">2 - &lt; 3 tahun</td><td class="p-2.5">3 bln upah</td><td class="p-2.5">-</td></tr>
+                                                <tr><td class="p-2.5">3 - &lt; 6 tahun</td><td class="p-2.5">4–6 bln upah</td><td class="p-2.5">2 bln upah</td></tr>
+                                                <tr><td class="p-2.5">6 - &lt; 9 tahun</td><td class="p-2.5">7–9 bln upah</td><td class="p-2.5">3 bln upah</td></tr>
+                                                <tr><td class="p-2.5">9 - &lt; 24 tahun</td><td class="p-2.5">9 bln upah (Max)</td><td class="p-2.5">4–8 bln upah</td></tr>
+                                                <tr><td class="p-2.5">24+ tahun</td><td class="p-2.5">9 bln upah</td><td class="p-2.5">10 bln upah (Max)</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Tabel Tarif Pajak PPh 21 Final -->
+                                <div class="space-y-2">
+                                    <span class="text-xs font-bold text-emerald-400 block">Tarif Pajak PPh 21 Final Pesangon (PP 68/2009 / PMK 16/2010)</span>
+                                    <div class="overflow-x-auto border border-slate-800 rounded-xl">
+                                        <table class="w-full text-xs text-left text-slate-300">
+                                            <thead class="bg-obsidian-950 text-emerald-400 font-bold border-b border-slate-800">
+                                                <tr>
+                                                    <th class="p-2.5">Penghasilan Bruto</th>
+                                                    <th class="p-2.5">Tarif Pajak</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-slate-800/60 bg-obsidian-900/50">
+                                                <tr><td class="p-2.5">s.d. Rp 50.000.000</td><td class="p-2.5 font-bold text-emerald-400">0% (Bebas)</td></tr>
+                                                <tr><td class="p-2.5">&gt; Rp 50 jt s.d. Rp 100 jt</td><td class="p-2.5">5%</td></tr>
+                                                <tr><td class="p-2.5">&gt; Rp 100 jt s.d. Rp 500 jt</td><td class="p-2.5">15%</td></tr>
+                                                <tr><td class="p-2.5">&gt; Rp 500.000.000</td><td class="p-2.5">25%</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-obsidian-950 border-t border-slate-900 text-slate-500 py-10 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-gold-500 text-obsidian-950 font-black flex items-center justify-center text-sm">
+                    WL
+                </div>
+                <div>
+                    <span class="text-white font-bold block text-sm">WELLY LEO</span>
+                    <span class="text-[10px] text-gold-400 uppercase font-semibold">Financial Consultant & Asset Risk Specialist</span>
+                </div>
+            </div>
+            <p class="text-slate-600 text-[11px]">&copy; Welly Leo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- AOS JS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- JAVASCRIPT & LOGIK PENGOPERASIAN -->
+    <script>
+        // Inisialisasi AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+            easing: 'ease-out-cubic'
+        });
+
+        // ========== INTERACTIVE 3D TUBES BACKGROUND ==========
+        (async function initHeroTubes() {
+            const canvas = document.getElementById('heroTubesCanvas');
+            const host = document.querySelector('.hero-tubes-layer');
+            if (!canvas || !host) return;
+
+            try {
+                const module = await import('https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js');
+                if (!document.body.contains(canvas)) return;
+
+                const TubesCursor = module.default;
+                const app = TubesCursor(canvas, {
+                    tubes: {
+                        /* Lumina 16 juta warna – initial full-spectrum palette */
+                        colors: ['#FF006E', '#FFBE0B', '#8338EC', '#10B981', '#3A86FF', '#D4AF37'],
+                        lights: {
+                            intensity: 200,
+                            colors: ['#FF006E', '#FB5607', '#FFBE0B', '#3A86FF', '#10B981', '#8338EC', '#F5E6A3']
+                        }
+                    }
+                });
+
+                if (app && app.tubes) {
+                    canvas.addEventListener('click', () => {
+                        /* Randomize from full 16,777,216 color space (24-bit RGB) */
+                        const makeColors = count => Array.from({ length: count }, () =>
+                            '#' + Math.floor(Math.random() * 16777216).toString(16).padStart(6, '0')
+                        );
+                        app.tubes.setColors(makeColors(6));
+                        app.tubes.setLightsColors(makeColors(7));
+                    });
+                }
+            } catch (error) {
+                console.warn('Interactive 3D tubes could not be loaded; using the premium ambient background instead.', error);
+            }
+        })();
+
+        // Counter Animation untuk Angka Statistik Hero Section
+        function startCounterAnimation() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const speed = 50;
+                const updateCount = () => {
+                    const count = +counter.innerText;
+                    const inc = Math.ceil(target / speed);
+                    if (count < target) {
+                        counter.innerText = count + inc;
+                        setTimeout(updateCount, 30);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        // Navigation Handler (Single Page Website)
+        function navigateTo(pageId, sectionId = null) {
+            document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
+            
+            const targetPage = document.getElementById('page-' + pageId);
+            if(targetPage) {
+                targetPage.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            document.getElementById('mobile-menu').classList.add('hidden');
+
+            if (sectionId) {
+                setTimeout(() => {
+                    const el = document.getElementById(sectionId);
+                    if (el) {
+                        el.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 50);
+            }
+            setTimeout(() => AOS.refresh(), 100);
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        }
+
+        // WhatsApp Form Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+
+            const text = `Halo Welly Leo,%0A%0ASaya ingin berkonsultasi.%0A*Nama:* ${encodeURIComponent(name)}%0A*No. HP:* ${encodeURIComponent(phone)}%0A*Layanan:* ${encodeURIComponent(service)}%0A*Pesan:* ${encodeURIComponent(message)}`;
+            window.open(`https://wa.me/6282227772038?text=${text}`, '_blank');
+        }
+
+        // Helper Format Currency Rupiah
+        function formatRupiah(num) {
+            return 'Rp ' + new Intl.NumberFormat('id-ID').format(Math.round(num));
+        }
+
+        // Helper Format Input Angka Real-time
+        function formatInputFormatted(elem) {
+            let val = elem.value.replace(/\D/g, '');
+            if (val === '') {
+                elem.value = '';
+                return;
+            }
+            elem.value = new Intl.NumberFormat('id-ID').format(parseInt(val, 10));
+        }
+
+        function getRawNumber(id) {
+            const el = document.getElementById(id);
+            if (!el) return 0;
+            const val = el.value.replace(/\D/g, '');
+            return val ? parseFloat(val) : 0;
+        }
+
+        // Tab Switching for Calculators
+        function switchCalc(calcId) {
+            document.querySelectorAll('.calc-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.calc-tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById('calc-' + calcId).classList.remove('hidden');
+            document.getElementById('tab-' + calcId).classList.add('active');
+        }
+
+        // 5. Kalkulator Dana Pendidikan Logic
+        function calcPendidikan() {
+            const cost = getRawNumber('edu-cost');
+            const ageCurr = parseFloat(document.getElementById('edu-age-curr').value) || 0;
+            const ageTarget = parseFloat(document.getElementById('edu-age-target').value) || 18;
+            const infl = (parseFloat(document.getElementById('edu-inflation').value) || 12) / 100;
+            const ret = (parseFloat(document.getElementById('edu-return').value) || 8) / 100;
+
+            const yearsToTarget = Math.max(0, ageTarget - ageCurr);
+            const futureCost = cost * Math.pow(1 + infl, yearsToTarget);
+
+            const rVal = ret / 12;
+            const nVal = yearsToTarget * 12;
+            let monthlyNeeded = 0;
+            if (nVal > 0) {
+                monthlyNeeded = futureCost * (rVal / (Math.pow(1 + rVal, nVal) - 1));
+            }
+
+            document.getElementById('res-edu-years').textContent = yearsToTarget + ' Tahun';
+            document.getElementById('res-edu-future').textContent = formatRupiah(futureCost);
+            document.getElementById('res-edu-monthly').textContent = formatRupiah(monthlyNeeded) + ' / bulan';
+
+            document.getElementById('res-edu-summary').innerHTML = `
+                Anak Anda saat ini berusia <strong>${ageCurr} tahun</strong> dan memiliki waktu <strong>${yearsToTarget} tahun</strong> sebelum memasuki jenjang pendidikan target pada usia <strong>${ageTarget} tahun</strong>. Akibat asumsi inflasi pendidikan <strong>${(infl*100).toFixed(1)}% per tahun</strong>, perkiraan biaya pendidikan naik dari <strong>${formatRupiah(cost)}</strong> menjadi <strong>${formatRupiah(futureCost)}</strong>. Disarankan menyisihkan <strong>${formatRupiah(monthlyNeeded)}/bulan</strong> pada instrumen berimbal hasil rata-rata <strong>${(ret*100).toFixed(1)}% per tahun</strong>.
+            `;
+        }
+
+        // ===== KALKULATOR 6: DANA PESANGON PHK (UU NO. 27 TAHUN 2026) =====
+        function calcPesangon() {
+            const gaji = getRawNumber('pesangon-gaji');
+            const years = parseFloat(document.getElementById('pesangon-years').value) || 0;
+            const reason = document.getElementById('pesangon-reason').value;
+            const uph = getRawNumber('pesangon-uph');
+
+            let baseUP = 0;
+            if (years < 1) baseUP = 1;
+            else if (years < 2) baseUP = 2;
+            else if (years < 3) baseUP = 3;
+            else if (years < 4) baseUP = 4;
+            else if (years < 5) baseUP = 5;
+            else if (years < 6) baseUP = 6;
+            else if (years < 7) baseUP = 7;
+            else if (years < 8) baseUP = 8;
+            else baseUP = 9;
+
+            let baseUPMK = 0;
+            if (years >= 3 && years < 6) baseUPMK = 2;
+            else if (years >= 6 && years < 9) baseUPMK = 3;
+            else if (years >= 9 && years < 12) baseUPMK = 4;
+            else if (years >= 12 && years < 15) baseUPMK = 5;
+            else if (years >= 15 && years < 18) baseUPMK = 6;
+            else if (years >= 18 && years < 21) baseUPMK = 7;
+            else if (years >= 21 && years < 24) baseUPMK = 8;
+            else if (years >= 24) baseUPMK = 10;
+
+            // Faktor pengali UP & UPMK berdasarkan UU No. 27 Tahun 2026 (menggantikan PP 35/2021)
+            let multUP = 1;
+            let multUPMK = 1;
+            let regNote = '';
+
+            if (reason === 'pensiun') {
+                multUP = 2;
+                multUPMK = 1;
+                regNote = '2× UP + 1× UPMK (Pasal 247 UU 27/2026 — naik dari 1,75× UP pada PP 35/2021)';
+            } else if (reason === 'merger_tolak') {
+                multUP = 2;
+                multUPMK = 1;
+                regNote = '2× UP + 1× UPMK (Pasal 236 ayat 2 UU 27/2026 — naik dari 1× UP pada PP 35/2021)';
+            } else if (reason === 'sakit') {
+                multUP = 2;
+                multUPMK = 2;
+                regNote = '2× UP + 2× UPMK (UU 27/2026 — UPMK naik dari 1× menjadi 2×)';
+            } else if (reason === 'meninggal') {
+                multUP = 2;
+                multUPMK = 1;
+                regNote = '2× UP + 1× UPMK (Pasal 249 UU 27/2026)';
+            } else if (reason === 'tutup_nonrugi') {
+                multUP = 1;
+                multUPMK = 1.5;
+                regNote = '1× UP + 1,5× UPMK (UU 27/2026 — UPMK naik dari 1× menjadi 1,5×)';
+            } else if (reason === 'tutup_rugi') {
+                multUP = 1;
+                multUPMK = 1;
+                regNote = '1× UP + 1× UPMK (Pasal 237–240 UU 27/2026 — pengali 0,5× di PP 35/2021 dihapus)';
+            } else if (reason === 'sp3') {
+                multUP = 1;
+                multUPMK = 1;
+                regNote = '1× UP + 1× UPMK (Pasal 244 UU 27/2026 — pengali 0,5× di PP 35/2021 dihapus)';
+            } else if (reason === 'resign') {
+                multUP = 0;
+                multUPMK = 0;
+                regNote = 'UPH + Uang Pisah min. 1 bulan upah jika belum diatur di PK/PP/PKB (Pasal 233 UU 27/2026)';
+            }
+
+            const valUP = (reason === 'resign') ? 0 : (gaji * baseUP * multUP);
+            const valUPMK = (reason === 'resign') ? 0 : (gaji * baseUPMK * multUPMK);
+            const bruto = valUP + valUPMK + uph;
+
+            let tax = 0;
+            let rem = bruto;
+            if (rem > 50000000) {
+                let tier1 = Math.min(rem - 50000000, 50000000);
+                tax += tier1 * 0.05;
+            }
+            if (rem > 100000000) {
+                let tier2 = Math.min(rem - 100000000, 400000000);
+                tax += tier2 * 0.15;
+            }
+            if (rem > 500000000) {
+                let tier3 = rem - 500000000;
+                tax += tier3 * 0.25;
+            }
+
+            const netto = bruto - tax;
+
+            document.getElementById('res-pesangon-up').textContent = formatRupiah(valUP);
+            document.getElementById('res-pesangon-upmk').textContent = formatRupiah(valUPMK);
+            document.getElementById('res-pesangon-bruto').textContent = formatRupiah(bruto);
+            document.getElementById('res-pesangon-tax').textContent = '- ' + formatRupiah(tax);
+            document.getElementById('res-pesangon-netto').textContent = formatRupiah(netto);
+
+            document.getElementById('res-pesangon-summary').innerHTML = `
+                Berdasarkan masa kerja <strong>${years} tahun</strong> dengan acuan <strong>UU No. 27 Tahun 2026</strong> (${regNote || 'pilih alasan PHK'}), total kompensasi bruto adalah <strong>${formatRupiah(bruto)}</strong> dan hak bersih (<em>netto</em>) setelah PPh 21 Final sebesar <strong>${formatRupiah(netto)}</strong>.<br><br>
+                <strong class="text-gold-400">Catatan Korporat:</strong> Kenaikan pengali di UU 27/2026 meningkatkan liabilitas pesangon perusahaan secara signifikan, dan Pasal 253 mewajibkan penyediaan <strong>Dana Cadangan Pesangon</strong>. Konsultasikan struktur pencadangan dan integrasi program pensiun perusahaan Anda bersama Welly Leo.
+            `;
+        }
+
+        // ===== KALKULATOR 2: CICILAN & DBR =====
+        function loanCalc(P, r, tahun, type) {
+            const n = Math.round(tahun * 12);
+            const i = r / 12;
+            if (P <= 0 || n <= 0) return { monthly: 0, totalInterest: 0, totalPay: 0, n: n };
+            let monthly, totalInterest;
+            if (type === 'flat') {
+                totalInterest = P * r * tahun;
+                monthly = (P + totalInterest) / n;
+            } else if (i > 0) {
+                monthly = P * i * Math.pow(1 + i, n) / (Math.pow(1 + i, n) - 1);
+                totalInterest = monthly * n - P;
+            } else {
+                monthly = P / n;
+                totalInterest = 0;
+            }
+            return { monthly: monthly, totalInterest: totalInterest, totalPay: P + totalInterest, n: n };
+        }
+
+        function plafonForInstallment(A, r, tahun, type) {
+            const n = Math.round(tahun * 12);
+            const i = r / 12;
+            if (A <= 0 || n <= 0) return 0;
+            if (type === 'flat') return A * n / (1 + r * tahun);
+            if (i === 0) return A * n;
+            return A * (1 - Math.pow(1 + i, -n)) / i;
+        }
+
+        function monthsToRepay(P, A, r, type) {
+            if (P <= 0 || A <= 0) return null;
+            const i = r / 12;
+            if (type === 'flat') {
+                const d = A - P * r / 12;
+                return d > 0 ? P / d : null;
+            }
+            if (i === 0) return P / A;
+            const x = 1 - P * i / A;
+            return x > 0 ? -Math.log(x) / Math.log(1 + i) : null;
+        }
+
+        function calcCicilan() {
+            const P = getRawNumber('cicilan-principal');
+            const r = (parseFloat(document.getElementById('cicilan-rate').value) || 0) / 100;
+            let tahun = parseFloat(document.getElementById('cicilan-tenure').value) || 1;
+            tahun = Math.min(30, Math.max(1, tahun));
+            const type = document.getElementById('cicilan-type').value || 'anuitas';
+            const income = getRawNumber('cicilan-income');
+            const existing = getRawNumber('cicilan-existing');
+
+            const cur = loanCalc(P, r, tahun, type);
+            const altType = type === 'flat' ? 'anuitas' : 'flat';
+            const altName = altType === 'flat' ? 'Flat' : 'Anuitas';
+            const curName = type === 'flat' ? 'Flat' : 'Anuitas';
+            const alt = loanCalc(P, r, tahun, altType);
+
+            document.getElementById('res-cicilan-monthly').textContent = formatRupiah(cur.monthly);
+            document.getElementById('res-cicilan-interest').textContent = formatRupiah(cur.totalInterest);
+            document.getElementById('res-cicilan-total').textContent = formatRupiah(cur.totalPay);
+
+            const dbr = income > 0 ? (cur.monthly + existing) / income * 100 : null;
+            const A_ideal = income > 0 ? income * 0.30 - existing : 0;
+            document.getElementById('res-cicilan-dbr').textContent = dbr === null ? '-' : dbr.toFixed(1) + '%';
+            document.getElementById('res-cicilan-cap').textContent = income > 0 ? formatRupiah(Math.max(0, A_ideal)) : '-';
+
+            let rec = '', sum = '';
+            if (P <= 0) {
+                rec = 'Masukkan jumlah pinjaman untuk memulai analisis.';
+            } else if (income <= 0) {
+                rec = `<p>Isi <strong>pendapatan bulanan</strong> untuk menghitung DBR. Acuan umum perbankan: total angsuran maksimal sekitar 30% dari pendapatan bulanan.</p>
+                       <p>Skema ${curName}: angsuran ${formatRupiah(cur.monthly)}/bulan, total bunga ${formatRupiah(cur.totalInterest)}. Skema ${altName}: angsuran ${formatRupiah(alt.monthly)}/bulan, total bunga ${formatRupiah(alt.totalInterest)}.</p>`;
+            } else if (A_ideal <= 0) {
+                rec = `<p><span class="text-rose-400 font-bold">Kewajiban yang sudah berjalan mencapai atau melampaui 30% pendapatan.</span> Ruang untuk pinjaman baru tidak tersedia.</p>
+                       <p><strong>Rekomendasi:</strong> rapikan kewajiban yang ada (refinancing, konsolidasi, atau pelunasan sebagian) sebelum menambah pinjaman baru.</p>`;
+            } else {
+                const plafonIdeal = plafonForInstallment(A_ideal, r, tahun, type);
+                const moNeed = monthsToRepay(P, A_ideal, r, type);
+                const needTxt = moNeed === null
+                    ? 'tidak tercapai dengan tenor berapa pun pada plafon ini'
+                    : (moNeed > 360
+                        ? 'melebihi tenor maksimal 30 tahun, sehingga plafon perlu diturunkan'
+                        : `sekitar <strong>${Math.ceil(moNeed)} bulan (${(moNeed / 12).toFixed(1)} tahun)</strong>`);
+                const cheaperNote = (type === 'flat' && alt.totalInterest < cur.totalInterest)
+                    ? ` Skema anuitas dengan tenor sama menghasilkan total bunga lebih rendah (sekitar ${formatRupiah(alt.totalInterest)}).`
+                    : '';
+                const protectNote = '<p>Lindungi pinjaman dengan asuransi jiwa / credit protection agar kewajiban tidak membebani keluarga atau usaha jika terjadi risiko pada debitur.</p>';
+
+                if (dbr <= 30) {
+                    rec = `<p><span class="text-emerald-400 font-bold">Aman (DBR ${dbr.toFixed(1)}%).</span> Angsuran berada dalam batas ideal. Sisa kapasitas angsuran sekitar <strong class="text-slate-100">${formatRupiah(A_ideal - cur.monthly)}/bulan</strong>.</p>
+                           <p><strong>Rekomendasi:</strong> plafon ini layak diambil.${cheaperNote} Sisihkan dana darurat minimal 3–6 bulan pengeluaran.</p>` + protectNote;
+                    sum = 'Kredit berada dalam kapasitas pembayaran yang sehat.';
+                } else if (dbr <= 40) {
+                    rec = `<p><span class="text-amber-400 font-bold">Perlu perhatian (DBR ${dbr.toFixed(1)}%).</span> Angsuran sudah di atas 30% pendapatan dan mengurangi ruang cadangan.</p>
+                           <p><strong>Rekomendasi:</strong> pada DBR 30%, plafon maksimal yang disarankan sekitar <strong class="text-slate-100">${formatRupiah(plafonIdeal)}</strong> dengan tenor ${tahun} tahun. Atau, dengan plafon ini, tenor perlu diperpanjang: ${needTxt}.${cheaperNote}</p>` + protectNote;
+                    sum = 'DBR berada di zona perhatian. Pertimbangkan penurunan plafon atau perpanjangan tenor.';
+                } else {
+                    rec = `<p><span class="text-rose-400 font-bold">Berisiko tinggi (DBR ${dbr.toFixed(1)}%).</span> Angsuran melebihi 40% pendapatan dan berpotensi membebani arus kas bulanan.</p>
+                           <p><strong>Rekomendasi:</strong> turunkan plafon ke sekitar <strong class="text-slate-100">${formatRupiah(plafonIdeal)}</strong> (DBR 30%). Atau, dengan plafon ini, tenor perlu ${needTxt}.${cheaperNote}</p>` + protectNote;
+                    sum = 'DBR berada di zona merah. Sebaiknya tidak mengambil plafon ini tanpa penyesuaian.';
+                }
+            }
+
+            document.getElementById('cicilan-rec').innerHTML = rec;
+            document.getElementById('cicilan-sum').textContent = sum;
+
+            let rows = '';
+            let bal = P;
+            const n = cur.n;
+            const i = r / 12;
+            for (let k = 1; k <= n; k++) {
+                let bunga, pokok;
+                if (type === 'flat') {
+                    bunga = cur.totalInterest / n;
+                    pokok = P / n;
+                } else {
+                    bunga = bal * i;
+                    pokok = cur.monthly - bunga;
+                }
+                bal = Math.max(0, bal - pokok);
+                rows += `<tr class="hover:bg-slate-900/80">
+                    <td class="py-2 px-3 text-center">${k}</td>
+                    <td class="py-2 px-3">${formatRupiah(cur.monthly)}</td>
+                    <td class="py-2 px-3">${formatRupiah(pokok)}</td>
+                    <td class="py-2 px-3 text-gold-400">${formatRupiah(bunga)}</td>
+                    <td class="py-2 px-3 text-right">${formatRupiah(bal)}</td>
+                </tr>`;
+            }
+            document.getElementById('cicilan-table-body').innerHTML = rows;
+        }
+
+        // ===== KALKULATOR 3: DEPOSITO COMPOUNDING (IDR / USD) =====
+        function depoFmt(x) {
+            if (document.getElementById('depo-cur').value === 'USD') {
+                return '$ ' + new Intl.NumberFormat('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(x || 0);
+            }
+            return formatRupiah(x);
+        }
+
+        function toggleDepoCur() {
+            const usd = document.getElementById('depo-cur').value === 'USD';
+            document.getElementById('depo-kurs-wrap').classList.toggle('hidden', !usd);
+            document.getElementById('depo-idr-wrap').classList.toggle('hidden', !usd);
+            calcDeposito();
+        }
+
+        function toggleDepoFreq() {
+            const monthly = document.getElementById('depo-freq').value === 'bulanan';
+            const inp = document.getElementById('depo-deposit-n');
+            const max = monthly ? 12 : 20;
+            inp.max = max;
+            if (inp.value !== '') inp.value = Math.min(max, Math.max(1, parseInt(inp.value) || 1));
+            document.getElementById('depo-deposit-label').textContent = monthly ? 'Lama Setoran (1–12 Bulan)' : 'Lama Setoran (1–20 Tahun)';
+            document.getElementById('depo-tenor-label').textContent = monthly ? 'Total Tenor Compounding (Bulan)' : 'Total Tenor Compounding (Tahun)';
+            document.getElementById('depo-th-period').textContent = monthly ? 'BULAN' : 'TAHUN';
+            calcDeposito();
+        }
+
+        function calcDeposito() {
+            const cur = document.getElementById('depo-cur').value;
+            const usd = cur === 'USD';
+            const kurs = getRawNumber('depo-kurs');
+            const amt = getRawNumber('depo-amount');
+            const annual = parseFloat(document.getElementById('depo-rate').value) || 0;
+            const freq = document.getElementById('depo-freq').value;
+            const perYear = freq === 'bulanan' ? 12 : 1;
+            const lamaMax = perYear === 12 ? 12 : 20;
+            const tenor = parseInt(document.getElementById('depo-tenor-sel').value) || 0;
+            let lama = Math.min(lamaMax, Math.max(1, parseInt(document.getElementById('depo-deposit-n').value) || 1));
+            lama = Math.min(lama, tenor);
+            const startAge = parseInt(document.getElementById('depo-age').value) || 0;
+            const infl = (parseFloat(document.getElementById('depo-infl').value) || 0) / 100;
+            const TAX = 0.20;
+            const ir = annual / 100 / perYear;
+            const unit = perYear === 12 ? 'bulan' : 'tahun';
+            const hlEvery = perYear === 12 ? 12 : 5;
+
+            let prevPB = 0, injected = 0, gross = 0, tax = 0, net = 0;
+            let rows = '';
+            for (let p = 1; p <= tenor; p++) {
+                const dana = p <= lama ? amt : 0;
+                injected += dana;
+                const pokok = p === 1 ? 0 : prevPB;
+                const total = dana + pokok;
+                const bunga = total * ir;
+                const pajak = bunga * TAX;
+                const bersih = bunga - pajak;
+                const pb = total + bersih;
+                prevPB = pb;
+                gross += bunga;
+                tax += pajak;
+                net += bersih;
+
+                const hl = p % hlEvery === 0;
+                const rowCls = hl ? 'bg-amber-400/10 text-amber-200 font-bold' : 'hover:bg-slate-900/80';
+                const age = startAge > 0 ? (startAge + Math.floor((p - 1) / perYear)) : '-';
+                rows += `<tr class="${rowCls}">
+                    <td class="py-2 px-2 text-center font-bold">${p}</td>
+                    <td class="py-2 px-2 text-center">${age}</td>
+                    <td class="py-2 px-2">${dana > 0 ? depoFmt(dana) : '-'}</td>
+                    <td class="py-2 px-2">${pokok > 0 ? depoFmt(pokok) : '-'}</td>
+                    <td class="py-2 px-2 text-emerald-400">${depoFmt(total)}</td>
+                    <td class="py-2 px-2">${depoFmt(bunga)}</td>
+                    <td class="py-2 px-2 text-rose-400">${depoFmt(pajak)}</td>
+                    <td class="py-2 px-2 text-emerald-400">${depoFmt(bersih)}</td>
+                    <td class="py-2 px-2 text-right font-extrabold text-yellow-300">${depoFmt(pb)}</td>
+                </tr>`;
+            }
+            document.getElementById('depo-table-body').innerHTML = rows;
+
+            document.getElementById('depo-o-final').textContent = depoFmt(prevPB);
+            document.getElementById('depo-o-idr').textContent = formatRupiah(prevPB * kurs);
+            document.getElementById('depo-o-modal').textContent = depoFmt(injected);
+            document.getElementById('depo-o-gross').textContent = depoFmt(gross);
+            document.getElementById('depo-o-tax').textContent = depoFmt(tax);
+            document.getElementById('depo-o-net').textContent = depoFmt(net);
+
+            const effNet = Math.pow(1 + ir * (1 - TAX), perYear) - 1;
+            const real = (1 + effNet) / (1 + infl) - 1;
+            document.getElementById('depo-o-eff').textContent = (effNet * 100).toFixed(2) + '%';
+            document.getElementById('depo-o-real').textContent = (real * 100).toFixed(2) + '%';
+
+            let rec = '', sum = '';
+            if (amt <= 0 || annual <= 0) {
+                rec = 'Masukkan penempatan pokok dan suku bunga untuk memulai analisis.';
+            } else {
+                const multiple = injected > 0 ? prevPB / injected : 0;
+                const finalIDR = usd ? prevPB * kurs : prevPB;
+                const pts = [];
+                pts.push(`<p><strong>Imbal hasil bersih efektif ${(effNet * 100).toFixed(2)}% p.a.</strong> setelah PPh 20%. Setelah asumsi inflasi ${(infl * 100).toFixed(1)}%, imbal hasil riil sekitar <strong>${(real * 100).toFixed(2)}% p.a.</strong></p>`);
+                pts.push(`<p>Nilai akhir setara <strong>${multiple.toFixed(2)}x</strong> dari total modal disetor (${depoFmt(injected)}).</p>`);
+                if (usd) {
+                    pts.push(`<p><span class="text-amber-400 font-bold">Risiko kurs:</span> pada kurs asumsi ${formatRupiah(kurs)}, nilai akhir setara ${formatRupiah(finalIDR)}. Pelemahan rupiah menaikkan nilai rupiah dana ini; penguatan rupiah menurunkannya. Sesuaikan porsi valas dengan kebutuhan mata uang Anda.</p>`);
+                }
+                if (finalIDR > 2000000000) {
+                    pts.push(`<p><span class="text-amber-400 font-bold">Perhatian penjaminan:</span> nilai akhir melampaui Rp 2 miliar. Sesuai ketentuan LPS yang berlaku (batas per nasabah per bank), pertimbangkan penyebaran ke beberapa bank. Cek batas terbaru di situs LPS.</p>`);
+                }
+                if (tenor > lama) {
+                    pts.push(`<p>Setoran berhenti pada ${unit} ke-${lama}, lalu dana berkembang tanpa setoran tambahan selama ${tenor - lama} ${unit}. Pastikan dana tersebut tidak dibutuhkan pada periode itu.</p>`);
+                }
+                if (startAge > 0 && startAge + tenor / perYear >= 60) {
+                    pts.push(`<p>Dana mencapai usia sekitar ${Math.round(startAge + tenor / perYear)} tahun. Pastikan porsi likuid sudah cukup untuk kebutuhan masa pensiun.</p>`);
+                }
+                pts.push(`<p><strong>Rekomendasi:</strong> sisihkan dana darurat 3–6 bulan pengeluaran di instrumen likuid terpisah. Untuk tenor panjang, pertimbangkan laddering (memecah dana ke beberapa tenor) agar likuiditas tetap terjaga. ${real > 0 ? 'Dengan imbal hasil riil positif, dana bertumbuh di atas inflasi.' : 'Imbal hasil riil tidak positif, sehingga daya beli cenderung tergerus; evaluasi instrumen lain sesuai profil risiko Anda.'}</p>`);
+                rec = pts.join('');
+                sum = 'Proyeksi bersifat ilustratif dengan asumsi suku bunga konstan dan PPh 20%. Angka aktual dapat berbeda mengikuti kebijakan bank dan kondisi pasar.';
+            }
+            document.getElementById('depo-rec').innerHTML = rec;
+            document.getElementById('depo-sum').textContent = sum;
+        }
+
+        toggleDepoFreq();
+        calcCicilan();
+
+        // 4. Kalkulator Dana Pensiun Logic
+        function calcPensiun() {
+            const exp = getRawNumber('pensiun-exp');
+            const ageCurr = parseFloat(document.getElementById('pensiun-age-curr').value) || 30;
+            const ageRet = parseFloat(document.getElementById('pensiun-age-ret').value) || 55;
+            const duration = parseFloat(document.getElementById('pensiun-duration').value) || 20;
+            const infl = (parseFloat(document.getElementById('pensiun-inflation').value) || 5) / 100;
+            const ret = (parseFloat(document.getElementById('pensiun-return').value) || 8) / 100;
+
+            const yearsToRet = Math.max(0, ageRet - ageCurr);
+            const expMonthlyFuture = exp * Math.pow(1 + infl, yearsToRet);
+            const totalRequired = expMonthlyFuture * 12 * duration;
+
+            const rVal = ret / 12;
+            const nVal = yearsToRet * 12;
+            let monthlyInvest = 0;
+            if (nVal > 0) {
+                monthlyInvest = totalRequired * (rVal / (Math.pow(1 + rVal, nVal) - 1));
+            }
+
+            document.getElementById('res-pensiun-monthly').textContent = formatRupiah(expMonthlyFuture);
+            document.getElementById('res-pensiun-total').textContent = formatRupiah(totalRequired);
+            document.getElementById('res-pensiun-saving').textContent = formatRupiah(monthlyInvest) + ' / bulan';
+
+            document.getElementById('res-pensiun-analysis').innerHTML = `
+                <p>Anda memiliki waktu <strong>${yearsToRet} tahun</strong> untuk mengumpulkan target dana pensiun sebesar <strong>${formatRupiah(totalRequired)}</strong>.</p>
+                <p>• <strong>Gaya Hidup:</strong> Pengeluaran bulanan Anda saat pensiun diperkirakan melonjak menjadi <strong>${formatRupiah(expMonthlyFuture)}</strong> akibat dampak inflasi kumulatif.</p>
+                <p>• <strong>Strategi Alokasi:</strong> Fokus alokasi pada instrumen pertumbuhan tinggi (seperti Reksa Dana Saham / Obligasi Pemerintah) di masa awal, lalu alihkan secara bertahap (<em>derisking</em>) ke instrumen berpenghasilan tetap saat mendekati usia pensiun.</p>
+            `;
+        }
+
+        // 1. Kalkulator Rekening Koran (KRK) Logic
+        function getTerbilangRingkas(num) {
+            if (isNaN(num) || num === 0) return "Rp 0";
+            if (num >= 1e12) return (num / 1e12).toFixed(2).replace('.00', '') + " Triliun";
+            if (num >= 1e9) return (num / 1e9).toFixed(2).replace('.00', '') + " Miliar";
+            if (num >= 1e6) return (num / 1e6).toFixed(2).replace('.00', '') + " Juta";
+            if (num >= 1e3) return (num / 1e3).toFixed(2).replace('.00', '') + " Ribu";
+            return num.toString();
+        }
+
+        function calcKRK() {
+            const plafon = getRawNumber('krk-plafon');
+            const os = getRawNumber('krk-os');
+            const rate = parseFloat(document.getElementById('krk-rate').value) || 0;
+            const monthIndex = parseInt(document.getElementById('krk-month').value) || 0;
+            const year = parseInt(document.getElementById('krk-year').value) || 2026;
+
+            const namaBulan = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+            const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+
+            const bungaHarian = (os * (rate / 100)) / 360;
+            const totalBungaBulan = bungaHarian * daysInMonth;
+            const penggunaanPlafon = plafon > 0 ? ((os / plafon) * 100).toFixed(1) : 0;
+            const sisaLimit = Math.max(0, plafon - os);
+            const totalKewajiban = os + totalBungaBulan;
+
+            const hintP = document.getElementById('krk-hint-plafon');
+            const hintO = document.getElementById('krk-hint-os');
+            if (hintP) hintP.textContent = "Terbilang: " + getTerbilangRingkas(plafon);
+            if (hintO) hintO.textContent = "Terbilang: " + getTerbilangRingkas(os);
+
+            document.getElementById('res-krk-harian').textContent = formatRupiah(bungaHarian) + " / hari";
+            document.getElementById('res-krk-total').textContent = formatRupiah(totalBungaBulan);
+            document.getElementById('res-krk-periode').textContent = `Akumulasi Bunga (${daysInMonth} Hari - ${namaBulan[monthIndex]} ${year})`;
+            document.getElementById('res-krk-penggunaan').textContent = penggunaanPlafon + "%";
+            document.getElementById('res-krk-sisa').textContent = formatRupiah(sisaLimit);
+            document.getElementById('res-krk-kewajiban').textContent = formatRupiah(totalKewajiban);
+            document.getElementById('res-krk-badge').textContent = `${namaBulan[monthIndex]} ${year}`;
+
+            let tableHTML = "";
+            let akumulasi = 0;
+            const krkRows = os > 0 ? daysInMonth : 0;
+            for (let i = 1; i <= krkRows; i++) {
+                akumulasi += bungaHarian;
+                tableHTML += `
+                    <tr class="hover:bg-obsidian-950/50">
+                        <td class="p-2.5 font-semibold">Tgl ${i} ${namaBulan[monthIndex].substring(0,3)}</td>
+                        <td class="p-2.5">${formatRupiah(os)}</td>
+                        <td class="p-2.5 text-emerald-400">+ ${formatRupiah(bungaHarian)}</td>
+                        <td class="p-2.5 font-bold text-white">${formatRupiah(akumulasi)}</td>
+                    </tr>`;
+            }
+            document.getElementById('res-krk-table').innerHTML = tableHTML;
+
+            let penggunaanNote = '';
+            if (penggunaanPlafon > 80) {
+                penggunaanNote = `<span class="text-rose-400 font-bold">Penggunaan plafon ${penggunaanPlafon}% (tinggi)</span>. Pertimbangkan monitoring ketat arus kas.`;
+            } else if (penggunaanPlafon > 50) {
+                penggunaanNote = `<span class="text-gold-400 font-bold">Penggunaan plafon ${penggunaanPlafon}%</span>. Masih dalam batas wajar.`;
+            } else {
+                penggunaanNote = `<span class="text-emerald-400 font-bold">Penggunaan plafon ${penggunaanPlafon}%</span>. Limit masih longgar.`;
+            }
+
+            document.getElementById('res-krk-summary').innerHTML = `
+                Dengan outstanding <strong>${formatRupiah(os)}</strong> dan bunga <strong>${rate}% p.a.</strong>, beban bunga harian Anda sebesar <strong>${formatRupiah(bungaHarian)}</strong>. 
+                Total akrual bulan ${namaBulan[monthIndex]} ${year} (${daysInMonth} hari) = <strong>${formatRupiah(totalBungaBulan)}</strong>. 
+                ${penggunaanNote}
+                <br><br>
+                <strong>Rekomendasi:</strong> Pastikan ada proteksi Asuransi Jiwa / Credit Protection atas fasilitas KRK agar kewajiban pokok tidak membebani keluarga atau kelangsungan usaha jika terjadi risiko tak terduga pada debitur utama.
+            `;
+        }
+
+        // ========== PRELOADER LOGIC ==========
+        function runPreloader() {
+            const bar = document.getElementById('preloader-bar');
+            const percent = document.getElementById('preloader-percent');
+            const preloader = document.getElementById('preloader');
+            let progress = 0;
+
+            const interval = setInterval(() => {
+                progress += Math.random() * 18 + 6;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    bar.style.width = '100%';
+                    percent.textContent = '100%';
+                    setTimeout(() => {
+                        preloader.classList.add('hidden');
+                        startCounterAnimation();
+                        if (typeof AOS !== 'undefined') AOS.refresh();
+                    }, 450);
+                } else {
+                    bar.style.width = progress + '%';
+                    percent.textContent = Math.floor(progress) + '%';
+                }
+            }, 120);
+        }
+
+        // ========== SINKRONISASI MUSIK BGM DENGAN 3 VIDEO EDUKASI ==========
+        function initVideoBgmSync() {
+            const bgm = document.getElementById('videoBgmAudio');
+            const videos = document.querySelectorAll('.edu-video');
+            if (!bgm || !videos.length) return;
+
+            let fadeTimer = null;
+            const targetVolume = 0.35;
+            const reffStartSec = 31; // Mulai dari reff 0:31
+
+            function fadeAudioTo(goalVol, onComplete) {
+                clearInterval(fadeTimer);
+                fadeTimer = setInterval(() => {
+                    const diff = goalVol - bgm.volume;
+                    if (Math.abs(diff) <= 0.03) {
+                        bgm.volume = goalVol;
+                        clearInterval(fadeTimer);
+                        if (onComplete) onComplete();
+                    } else {
+                        bgm.volume = Math.max(0, Math.min(1, bgm.volume + (diff > 0 ? 0.03 : -0.03)));
+                    }
+                }, 60);
+            }
+
+            videos.forEach(video => {
+                video.addEventListener('play', () => {
+                    // Jeda video lain agar tidak bertumpuk
+                    videos.forEach(other => {
+                        if (other !== video && !other.paused) other.pause();
+                    });
+
+                    if (bgm.paused) {
+                        if (bgm.duration && bgm.duration > reffStartSec && bgm.currentTime < reffStartSec) {
+                            bgm.currentTime = reffStartSec;
+                        }
+                        bgm.volume = 0;
+                        bgm.play().then(() => fadeAudioTo(targetVolume)).catch(() => {});
+                    } else {
+                        fadeAudioTo(targetVolume);
+                    }
+                });
+
+                const handleStop = () => {
+                    const anyPlaying = Array.from(videos).some(v => !v.paused && !v.ended);
+                    if (!anyPlaying && !bgm.paused) {
+                        fadeAudioTo(0, () => bgm.pause());
+                    }
+                };
+
+                video.addEventListener('pause', handleStop);
+                video.addEventListener('ended', handleStop);
+            });
+        }
+
+        window.onload = function() {
+            runPreloader();
+            initVideoBgmSync();
+        };
+    </script>
+</body>
+</html>
