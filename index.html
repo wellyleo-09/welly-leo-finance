@@ -68,7 +68,6 @@
             text-size-adjust: 100%;
         }
 
-        /* Di HP/tablet: animasi masuk dari samping diganti naik dari bawah */
         @media (max-width: 1023px) {
             [data-aos="fade-right"],
             [data-aos="fade-left"] {
@@ -87,7 +86,6 @@
             overflow-x: hidden;
         }
 
-        /* Noise texture overlay for premium black feel */
         body::before {
             content: "";
             position: fixed;
@@ -149,7 +147,6 @@
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        /* Ambient Pulsing Orbs */
         @keyframes floatGlow {
             0%, 100% { transform: translateY(0) scale(1); opacity: 0.45; }
             50% { transform: translateY(-28px) scale(1.12); opacity: 0.75; }
@@ -165,7 +162,6 @@
             animation: floatGlowReverse 11s ease-in-out infinite 1.5s;
         }
 
-        /* Floating particles */
         .particle {
             position: absolute;
             width: 3px;
@@ -182,7 +178,6 @@
             100% { transform: translateY(-10vh) translateX(40px) scale(0.5); opacity: 0; }
         }
 
-        /* Navbar glass upgrade */
         #navbar {
             background: rgba(5, 7, 10, 0.85);
             backdrop-filter: blur(24px);
@@ -190,7 +185,6 @@
             border-bottom: 1px solid rgba(212, 175, 55, 0.08);
         }
 
-        /* Smooth Custom Scrollbar */
         ::-webkit-scrollbar { width: 7px; }
         ::-webkit-scrollbar-track { background: #05070A; }
         ::-webkit-scrollbar-thumb { 
@@ -199,7 +193,6 @@
         }
         ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
 
-        /* Button shine effect */
         .btn-shine {
             position: relative;
             overflow: hidden;
@@ -218,7 +211,6 @@
             left: 120%;
         }
 
-        /* Input focus glow */
         input:focus, select:focus, textarea:focus {
             box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
         }
@@ -463,6 +455,29 @@
         @media (prefers-reduced-motion: reduce) {
             .photo-blob { animation: none; }
             .photo-glide { animation: none; opacity: 1; }
+        }
+
+        /* ========== RESOLUSI & MODAL VIDEO RESPONSIF PC & HP (ASPECT 16:9) ========== */
+        @keyframes tickerScroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .video-ticker-track {
+            display: flex;
+            width: max-content;
+            white-space: nowrap;
+            animation: tickerScroll 22s linear infinite;
+        }
+        .group:hover .video-ticker-track,
+        #videoPlayerModal:hover .video-ticker-track {
+            animation-play-state: paused;
+        }
+        .video-frame-16x9 {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #05070A;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -752,74 +767,182 @@
             </div>
         </section>
 
-        <!-- SECTION VIDEO EDUKASI (9:16 di HP, 16:9 di PC) -->
+        <!-- SECTION VIDEO EDUKASI (RESOLUSI RESPONSIF PC & HP 16:9 + MODAL VIEWER) -->
         <section id="video" class="py-20 bg-obsidian relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up" data-aos-duration="800">
-                    <span class="px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-extrabold uppercase tracking-widest">
-                        Media & Video Edukasi
+                <div class="text-center max-w-3xl mx-auto mb-14 space-y-3" data-aos="fade-up" data-aos-duration="800">
+                    <span class="inline-block px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-extrabold uppercase tracking-widest">
+                        Media &amp; Video Edukasi
                     </span>
-                    <h2 class="text-3xl sm:text-4xl font-black text-white mt-3">
-                        Video Penjelasan & Strategi Keuangan
+                    <h2 class="text-3xl sm:text-4xl font-black text-white">
+                        Video Penjelasan &amp; Strategi Keuangan
                     </h2>
-                    <p class="text-slate-400 mt-3 text-sm">
+                    <p class="text-slate-400 text-sm sm:text-base">
                         Saksikan paparan langsung mengenai mitigasi risiko bisnis, proteksi pinjaman rekening koran, dan konsep pengelolaan aset kertas (paper asset).
                     </p>
                 </div>
 
-                <!-- Grid 3 Video: 9:16 di HP, 16:9 di PC -->
+                <!-- Grid 3 Video: 1 Kolom di HP, 3 Kolom di PC (Resolusi Kartu & Frame 16:9 Identik Index 1) -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="edu-videos-grid">
                     
-                    <div class="morph-card p-5 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Video Card 1 -->
+                    <div class="group morph-card overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
                         <div>
-                            <div class="relative w-full max-w-[290px] md:max-w-none mx-auto aspect-[9/16] md:aspect-video rounded-xl bg-obsidian-950 border border-slate-800 overflow-hidden mb-4">
-                                <video class="edu-video w-full h-full object-contain bg-black" controls preload="none" playsinline poster="poster1.jpg">
+                            <div class="video-frame-16x9 border-b border-slate-800/90">
+                                <video class="edu-video w-full h-full object-contain bg-black" controls playsinline preload="metadata" poster="https://placehold.co/640x360/0A0E14/D4AF37?text=Video+1:+Proteksi+KRK">
                                     <source src="video1.mp4" type="video/mp4">
                                 </video>
+                                <button
+                                    type="button"
+                                    onclick="openVideoModal(0)"
+                                    title="Perbesar Tampilan Video"
+                                    class="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full bg-obsidian-950/85 hover:bg-gold-500 text-gold-400 hover:text-obsidian-950 border border-gold-500/40 text-[11px] font-bold flex items-center gap-1.5 backdrop-blur-sm transition"
+                                >
+                                    <i class="fa-solid fa-expand text-[10px]"></i>
+                                    <span>Layar Penuh</span>
+                                </button>
                             </div>
-                            <h3 class="text-base font-bold text-white mb-2">Strategi Proteksi Kredit Rekening Koran (PRK)</h3>
-                            <p class="text-xs text-slate-400 leading-relaxed">
-                                Penjelasan mendalam mengenai cara melindungi aset jaminan bank dan mengamankan likuiditas usaha jika terjadi risiko meninggal pada debitur utama.
-                            </p>
+                            <div class="p-6 space-y-2.5">
+                                <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-gold-400">Bagian 01 &bull; Proteksi KRK</span>
+                                <h3 class="text-lg sm:text-xl font-bold text-white leading-snug">Strategi Proteksi Kredit Rekening Koran (PRK)</h3>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                                    Penjelasan mendalam mengenai cara melindungi aset jaminan bank dan mengamankan likuiditas usaha jika terjadi risiko meninggal pada debitur utama.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-2 flex items-center justify-between text-xs font-bold">
+                            <button type="button" onclick="openVideoModal(0)" class="inline-flex items-center gap-1.5 text-emerald-400 hover:text-gold-400 transition">
+                                <i class="fa-solid fa-circle-play"></i>
+                                <span>Tonton Mode Fokus</span>
+                            </button>
+                            <span class="text-slate-500 font-medium">HD 16:9</span>
                         </div>
                     </div>
 
-                    <div class="morph-card p-5 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Video Card 2 -->
+                    <div class="group morph-card overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
                         <div>
-                            <div class="relative w-full max-w-[290px] md:max-w-none mx-auto aspect-[9/16] md:aspect-video rounded-xl bg-obsidian-950 border border-slate-800 overflow-hidden mb-4">
-                                <video class="edu-video w-full h-full object-contain bg-black" controls preload="none" playsinline poster="poster2.jpg">
+                            <div class="video-frame-16x9 border-b border-slate-800/90">
+                                <video class="edu-video w-full h-full object-contain bg-black" controls playsinline preload="metadata" poster="https://placehold.co/640x360/0A0E14/10B981?text=Video+2:+Paper+Asset">
                                     <source src="video2.mp4" type="video/mp4">
                                 </video>
+                                <button
+                                    type="button"
+                                    onclick="openVideoModal(1)"
+                                    title="Perbesar Tampilan Video"
+                                    class="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full bg-obsidian-950/85 hover:bg-gold-500 text-gold-400 hover:text-obsidian-950 border border-gold-500/40 text-[11px] font-bold flex items-center gap-1.5 backdrop-blur-sm transition"
+                                >
+                                    <i class="fa-solid fa-expand text-[10px]"></i>
+                                    <span>Layar Penuh</span>
+                                </button>
                             </div>
-                            <h3 class="text-base font-bold text-white mb-2">Menciptakan Paper Asset bernilai Tinggi</h3>
-                            <p class="text-xs text-slate-400 leading-relaxed">
-                                Panduan praktis membangun warisan instan bebas sengketa waris bagi generasi penerus tanpa membebani arus kas operasional bisnis.
-                            </p>
+                            <div class="p-6 space-y-2.5">
+                                <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-emerald-400">Bagian 02 &bull; Paper Asset</span>
+                                <h3 class="text-lg sm:text-xl font-bold text-white leading-snug">Menciptakan Paper Asset bernilai Tinggi</h3>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                                    Panduan praktis membangun warisan instan bebas sengketa waris bagi generasi penerus tanpa membebani arus kas operasional bisnis.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-2 flex items-center justify-between text-xs font-bold">
+                            <button type="button" onclick="openVideoModal(1)" class="inline-flex items-center gap-1.5 text-emerald-400 hover:text-gold-400 transition">
+                                <i class="fa-solid fa-circle-play"></i>
+                                <span>Tonton Mode Fokus</span>
+                            </button>
+                            <span class="text-slate-500 font-medium">HD 16:9</span>
                         </div>
                     </div>
 
-                    <div class="morph-card p-5 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+                    <!-- Video Card 3 -->
+                    <div class="group morph-card overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
                         <div>
-                            <div class="relative w-full max-w-[290px] md:max-w-none mx-auto aspect-[9/16] md:aspect-video rounded-xl bg-obsidian-950 border border-slate-800 overflow-hidden mb-4">
-                                <video class="edu-video w-full h-full object-contain bg-black" controls preload="none" playsinline poster="poster3.jpg">
+                            <div class="video-frame-16x9 border-b border-slate-800/90">
+                                <video class="edu-video w-full h-full object-contain bg-black" controls playsinline preload="metadata" poster="https://placehold.co/640x360/0A0E14/D4AF37?text=Video+3:+Simulasi+Kalkulator">
                                     <source src="video3.mp4" type="video/mp4">
                                 </video>
+                                <button
+                                    type="button"
+                                    onclick="openVideoModal(2)"
+                                    title="Perbesar Tampilan Video"
+                                    class="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full bg-obsidian-950/85 hover:bg-gold-500 text-gold-400 hover:text-obsidian-950 border border-gold-500/40 text-[11px] font-bold flex items-center gap-1.5 backdrop-blur-sm transition"
+                                >
+                                    <i class="fa-solid fa-expand text-[10px]"></i>
+                                    <span>Layar Penuh</span>
+                                </button>
                             </div>
-                            <h3 class="text-base font-bold text-white mb-2">Panduan Simulasi Tool Kalkulator Keuangan</h3>
-                            <p class="text-xs text-slate-400 leading-relaxed">
-                                Video cara memanfaatkan kalkulator cicilan & DBR, deposito, dana pensiun, hingga pesangon UU 27/2026 untuk keputusan finansial yang tepat.
-                            </p>
+                            <div class="p-6 space-y-2.5">
+                                <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-gold-400">Bagian 03 &bull; Simulasi Finansial</span>
+                                <h3 class="text-lg sm:text-xl font-bold text-white leading-snug">Panduan Simulasi Tool Kalkulator Keuangan</h3>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                                    Video cara memanfaatkan kalkulator cicilan &amp; DBR, deposito, dana pensiun, hingga pesangon UU 27/2026 untuk keputusan finansial yang tepat.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-2 flex items-center justify-between text-xs font-bold">
+                            <button type="button" onclick="openVideoModal(2)" class="inline-flex items-center gap-1.5 text-emerald-400 hover:text-gold-400 transition">
+                                <i class="fa-solid fa-circle-play"></i>
+                                <span>Tonton Mode Fokus</span>
+                            </button>
+                            <span class="text-slate-500 font-medium">HD 16:9</span>
                         </div>
                     </div>
 
                 </div>
 
-                <!-- Audio BGM Pemutar 3 Video Edukasi (Terintegrasi dengan Alat Pembungkus) -->
-                <audio id="videoBgmAudio" preload="none" loop playsinline>
+                <!-- Audio BGM Pemutar 3 Video Edukasi -->
+                <audio id="videoBgmAudio" preload="auto" loop playsinline>
                     <source src="musik.mp3" type="audio/mpeg">
                 </audio>
             </div>
         </section>
+
+        <!-- MODAL PEMUTAR VIDEO RESPONSIF PC & HP (RESOLUSI IDENTIK INDEX 1) -->
+        <div id="videoPlayerModal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/90 backdrop-blur-md p-3 sm:p-6">
+            <div class="relative w-full max-w-3xl rounded-3xl bg-obsidian-900 border border-gold-500/35 shadow-2xl overflow-hidden text-white">
+                
+                <!-- Modal Header -->
+                <div class="px-4 sm:px-6 py-4 bg-obsidian-950 border-b border-slate-800 flex items-center justify-between gap-3">
+                    <div class="min-w-0">
+                        <span id="modalVideoBadge" class="text-[11px] font-bold uppercase tracking-wider text-gold-400 block">Bagian 01 &bull; Video Edukasi</span>
+                        <h3 id="modalVideoTitle" class="text-sm sm:text-base font-bold text-white truncate mt-0.5">Strategi Proteksi Kredit Rekening Koran (PRK)</h3>
+                    </div>
+                    <button type="button" onclick="closeVideoModal()" aria-label="Tutup Video" class="w-9 h-9 rounded-xl bg-slate-800/80 hover:bg-rose-500/80 text-slate-200 hover:text-white flex items-center justify-center shrink-0 transition">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Area Pemutar Video 16:9 Presisi di PC & HP -->
+                <div class="video-frame-16x9 bg-black">
+                    <video id="modalVideoElement" class="w-full h-full object-contain bg-black" controls playsinline preload="metadata">
+                        <source id="modalVideoSource" src="video1.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <!-- Running Text Ticker -->
+                <div class="bg-obsidian-950 border-t border-gold-500/25 py-2 overflow-hidden">
+                    <div id="modalVideoTicker" class="video-ticker-track text-xs text-gold-400 font-medium">
+                        <span class="px-6">&#9679; Edukasi Finansial &amp; Manajemen Risiko Bersama Welly Leo &bull; Konsultasi WA +62 822-2777-2038</span>
+                        <span class="px-6">&#9679; Edukasi Finansial &amp; Manajemen Risiko Bersama Welly Leo &bull; Konsultasi WA +62 822-2777-2038</span>
+                    </div>
+                </div>
+
+                <!-- Navigasi Antar Video di Modal -->
+                <div class="px-4 sm:px-6 py-4 bg-obsidian-950 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                    <p id="modalVideoDesc" class="text-xs text-slate-400 line-clamp-2 flex-1 min-w-[200px]">
+                        Penjelasan mendalam mengenai cara melindungi aset jaminan bank dan mengamankan likuiditas usaha.
+                    </p>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button type="button" onclick="stepVideoModal(-1)" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 transition">
+                            &larr; Video Sebelumnya
+                        </button>
+                        <button type="button" onclick="stepVideoModal(1)" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 hover:from-gold-400 hover:to-gold-500 text-xs font-bold text-obsidian-950 transition">
+                            Video Berikutnya &rarr;
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
         <!-- FORM KONTAK & DIRECT CTA -->
         <section id="kontak" class="py-20 bg-obsidian-900 relative">
@@ -1504,7 +1627,6 @@
                             </span>
                         </div>
 
-                        <!-- Banner Info Pembaruan Regulasi UU 27/2026 -->
                         <div class="p-4 rounded-xl bg-gradient-to-r from-gold-500/10 via-obsidian-950 to-emerald-500/10 border border-gold-500/30 text-xs text-slate-300 leading-relaxed flex items-start gap-3">
                             <i class="fa-solid fa-circle-info text-gold-400 text-base mt-0.5 flex-shrink-0"></i>
                             <div>
@@ -1514,7 +1636,6 @@
                         </div>
 
                         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                            <!-- Input Form -->
                             <div class="lg:col-span-5 space-y-4">
                                 <div>
                                     <label class="block text-xs font-bold text-slate-300 mb-1">Gaji Pokok + Tunjangan Tetap (Rp)</label>
@@ -1546,7 +1667,6 @@
                                 <button onclick="calcPesangon()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-extrabold text-xs uppercase shadow-lg hover:scale-[1.01] transition-all">Hitung Hak Pesangon (UU 27/2026)</button>
                             </div>
 
-                            <!-- Output Display -->
                             <div class="lg:col-span-7 bg-obsidian-950/90 rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
                                 <div class="space-y-3">
                                     <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block border-b border-slate-800 pb-2">Rincian Hak Kompensasi (UU No. 27 Tahun 2026)</span>
@@ -1583,7 +1703,6 @@
                             </div>
                         </div>
 
-                        <!-- TEKS PENJELASAN DAN TABEL PERATURAN UU 27/2026 -->
                         <div class="pt-6 border-t border-slate-800 space-y-6">
                             <div>
                                 <h3 class="text-base font-bold text-white flex items-center gap-2 mb-2">
@@ -1594,7 +1713,6 @@
                                 </p>
                             </div>
 
-                            <!-- Tabel Perbandingan PP 35/2021 vs UU 27/2026 -->
                             <div class="space-y-2">
                                 <span class="text-xs font-bold text-gold-400 block">Perbandingan Faktor Pengali: PP 35/2021 vs UU No. 27 Tahun 2026 (Pasal 233–249)</span>
                                 <div class="overflow-x-auto border border-slate-800 rounded-xl">
@@ -1652,7 +1770,6 @@
                                 </div>
                             </div>
 
-                            <!-- Poin Penting Korporat & Dana Cadangan Pesangon -->
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
                                 <div class="p-4 rounded-xl bg-obsidian-950 border border-gold-500/25 space-y-1">
                                     <span class="font-bold text-gold-400 block"><i class="fa-solid fa-vault mr-1.5"></i>Dana Cadangan Pesangon (Pasal 253)</span>
@@ -1675,7 +1792,6 @@
                             </div>
 
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                                <!-- Tabel Ketentuan Masa Kerja -->
                                 <div class="space-y-2">
                                     <span class="text-xs font-bold text-gold-400 block">Tabel Dasar Masa Kerja UP & UPMK (UU 27/2026)</span>
                                     <div class="overflow-x-auto border border-slate-800 rounded-xl">
@@ -1700,7 +1816,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Tabel Tarif Pajak PPh 21 Final -->
                                 <div class="space-y-2">
                                     <span class="text-xs font-bold text-emerald-400 block">Tarif Pajak PPh 21 Final Pesangon (PP 68/2009 / PMK 16/2010)</span>
                                     <div class="overflow-x-auto border border-slate-800 rounded-xl">
@@ -1750,7 +1865,6 @@
 
     <!-- JAVASCRIPT & LOGIK PENGOPERASIAN -->
     <script>
-        // Inisialisasi AOS (Animate On Scroll)
         AOS.init({
             duration: 800,
             once: true,
@@ -1813,7 +1927,7 @@
             });
         }
 
-        // Navigation Handler (Single Page Website)
+        // Navigation Handler
         function navigateTo(pageId, sectionId = null) {
             document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
             
@@ -1855,12 +1969,10 @@
             window.open(`https://wa.me/6282227772038?text=${text}`, '_blank');
         }
 
-        // Helper Format Currency Rupiah
         function formatRupiah(num) {
             return 'Rp ' + new Intl.NumberFormat('id-ID').format(Math.round(num));
         }
 
-        // Helper Format Input Angka Real-time
         function formatInputFormatted(elem) {
             let val = elem.value.replace(/\D/g, '');
             if (val === '') {
@@ -1877,7 +1989,6 @@
             return val ? parseFloat(val) : 0;
         }
 
-        // Tab Switching for Calculators
         function switchCalc(calcId) {
             document.querySelectorAll('.calc-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.calc-tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -1913,7 +2024,7 @@
             `;
         }
 
-        // ===== KALKULATOR 6: DANA PESANGON PHK (UU NO. 27 TAHUN 2026) =====
+        // 6. Kalkulator Dana Pesangon PHK (UU No. 27 Tahun 2026)
         function calcPesangon() {
             const gaji = getRawNumber('pesangon-gaji');
             const years = parseFloat(document.getElementById('pesangon-years').value) || 0;
@@ -2012,7 +2123,7 @@
             `;
         }
 
-        // ===== KALKULATOR 2: CICILAN & DBR =====
+        // 2. Cicilan & DBR
         function loanCalc(P, r, tahun, type) {
             const n = Math.round(tahun * 12);
             const i = r / 12;
@@ -2141,7 +2252,7 @@
             document.getElementById('cicilan-table-body').innerHTML = rows;
         }
 
-        // ===== KALKULATOR 3: DEPOSITO COMPOUNDING (IDR / USD) =====
+        // 3. Deposito Compounding
         function depoFmt(x) {
             if (document.getElementById('depo-cur').value === 'USD') {
                 return '$ ' + new Intl.NumberFormat('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(x || 0);
@@ -2393,11 +2504,92 @@
             }, 120);
         }
 
-        // ========== SINKRONISASI MUSIK BGM DENGAN 3 VIDEO EDUKASI ==========
+        // ========== MODAL PEMUTAR VIDEO RESPONSIF PC & HP ==========
+        const eduVideoItems = [
+            {
+                badge: 'Bagian 01 • Proteksi KRK',
+                title: 'Strategi Proteksi Kredit Rekening Koran (PRK)',
+                src: 'video1.mp4',
+                poster: 'https://placehold.co/640x360/0A0E14/D4AF37?text=Video+1:+Proteksi+KRK',
+                desc: 'Penjelasan mendalam mengenai cara melindungi aset jaminan bank dan mengamankan likuiditas usaha jika terjadi risiko meninggal pada debitur utama.'
+            },
+            {
+                badge: 'Bagian 02 • Paper Asset',
+                title: 'Menciptakan Paper Asset bernilai Tinggi',
+                src: 'video2.mp4',
+                poster: 'https://placehold.co/640x360/0A0E14/10B981?text=Video+2:+Paper+Asset',
+                desc: 'Panduan praktis membangun warisan instan bebas sengketa waris bagi generasi penerus tanpa membebani arus kas operasional bisnis.'
+            },
+            {
+                badge: 'Bagian 03 • Simulasi Finansial',
+                title: 'Panduan Simulasi Tool Kalkulator Keuangan',
+                src: 'video3.mp4',
+                poster: 'https://placehold.co/640x360/0A0E14/D4AF37?text=Video+3:+Simulasi+Kalkulator',
+                desc: 'Video cara memanfaatkan kalkulator cicilan & DBR, deposito, dana pensiun, hingga pesangon UU 27/2026 untuk keputusan finansial yang tepat.'
+            }
+        ];
+        let currentModalVideoIdx = 0;
+
+        function openVideoModal(idx) {
+            currentModalVideoIdx = idx;
+            const item = eduVideoItems[idx];
+            if (!item) return;
+
+            document.querySelectorAll('.edu-video').forEach(v => {
+                if (!v.paused) v.pause();
+            });
+
+            const modal = document.getElementById('videoPlayerModal');
+            const vid = document.getElementById('modalVideoElement');
+            const srcEl = document.getElementById('modalVideoSource');
+
+            document.getElementById('modalVideoBadge').textContent = item.badge;
+            document.getElementById('modalVideoTitle').textContent = item.title;
+            document.getElementById('modalVideoDesc').textContent = item.desc;
+
+            srcEl.src = item.src;
+            vid.poster = item.poster;
+            vid.load();
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+
+            vid.play().catch(() => {});
+        }
+
+        function stepVideoModal(delta) {
+            const nextIdx = (currentModalVideoIdx + delta + eduVideoItems.length) % eduVideoItems.length;
+            openVideoModal(nextIdx);
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoPlayerModal');
+            const vid = document.getElementById('modalVideoElement');
+            if (vid && !vid.paused) vid.pause();
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('videoPlayerModal').addEventListener('click', (e) => {
+            if (e.target.id === 'videoPlayerModal') closeVideoModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('videoPlayerModal');
+            if (!modal.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeVideoModal();
+                if (e.key === 'ArrowRight') stepVideoModal(1);
+                if (e.key === 'ArrowLeft') stepVideoModal(-1);
+            }
+        });
+
+        // ========== SINKRONISASI MUSIK BGM DENGAN SEMUA VIDEO EDUKASI ==========
         function initVideoBgmSync() {
             const bgm = document.getElementById('videoBgmAudio');
-            const videos = document.querySelectorAll('.edu-video');
-            if (!bgm || !videos.length) return;
+            const allVideos = Array.from(document.querySelectorAll('.edu-video, #modalVideoElement'));
+            if (!bgm || !allVideos.length) return;
 
             let fadeTimer = null;
             const targetVolume = 0.35;
@@ -2417,9 +2609,9 @@
                 }, 60);
             }
 
-            videos.forEach(video => {
+            allVideos.forEach(video => {
                 video.addEventListener('play', () => {
-                    videos.forEach(other => {
+                    allVideos.forEach(other => {
                         if (other !== video && !other.paused) other.pause();
                     });
 
@@ -2435,7 +2627,7 @@
                 });
 
                 const handleStop = () => {
-                    const anyPlaying = Array.from(videos).some(v => !v.paused && !v.ended);
+                    const anyPlaying = allVideos.some(v => !v.paused && !v.ended);
                     if (!anyPlaying && !bgm.paused) {
                         fadeAudioTo(0, () => bgm.pause());
                     }
